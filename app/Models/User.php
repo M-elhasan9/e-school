@@ -55,4 +55,15 @@ public function enrollments()
 {
     return $this->hasMany(Enrollment::class, 'user_id');
 }
+
+public function isAdmin()
+{
+    return $this->role === 'admin';
+}
+
+public function isStudent()
+{
+    return $this->role === 'student';
+}
+
 }

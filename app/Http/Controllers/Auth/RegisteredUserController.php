@@ -48,4 +48,6 @@ class RegisteredUserController extends Controller
 
         return to_route('dashboard');
     }
+
+    
 }
