@@ -14,10 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         User::factory(10)->create();
 
-    -
         User::firstOrCreate(
             ['email' => 'admin@example.com'],
             [
@@ -27,7 +26,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        
+
         User::firstOrCreate(
             ['email' => 'student@example.com'],
             [
