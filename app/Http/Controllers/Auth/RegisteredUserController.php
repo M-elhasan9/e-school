@@ -18,11 +18,10 @@ class RegisteredUserController extends Controller
     /**
      * Show the registration page.
      */
-  public function create()
+   public function create()
 {
     return view('auth.register');
 }
-
 
     /**
      * Handle an incoming registration request.
@@ -50,5 +49,5 @@ class RegisteredUserController extends Controller
         return to_route('home');
     }
 
-    
+
 }

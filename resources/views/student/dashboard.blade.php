@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('content') 
-@section('title',' dashboard ')  
+@section('content')
+@section('title',' dashboard ')
 <body>
  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
    <div class="container">
-     <a class="navbar-brand" href="{{ asset('index.html') }}"><span>Study</span>Lab</a>
+     <a class="navbar-brand" href="{{ asset('home.index') }}"><span>Study</span>Lab</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
        <span class="oi oi-menu"></span> Menu
      </button>
@@ -22,7 +22,7 @@
    </div>
  </nav>
  <!-- END nav -->
- 
+
  <section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_2.jpg') }}');">
   <div class="overlay"></div>
   <div class="container">
@@ -277,7 +277,7 @@
             <h3 class="heading mb-3">Top Quality Content</h3>
             <p>A small river named Duden flows by their place and supplies</p>
           </div>
-        </div>      
+        </div>
       </div>
       <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
         <div class="services">
@@ -286,7 +286,7 @@
             <h3 class="heading mb-3">Highly Skilled Instructor</h3>
             <p>A small river named Duden flows by their place and supplies</p>
           </div>
-        </div>    
+        </div>
       </div>
       <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
         <div class="services">
@@ -295,7 +295,7 @@
             <h3 class="heading mb-3">World Class &amp; Quiz</h3>
             <p>A small river named Duden flows by their place and supplies</p>
           </div>
-        </div>      
+        </div>
       </div>
       <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
         <div class="services">
@@ -304,7 +304,7 @@
             <h3 class="heading mb-3">Get Certified</h3>
             <p>A small river named Duden flows by their place and supplies</p>
           </div>
-        </div>      
+        </div>
       </div>
     </div>
   </div>

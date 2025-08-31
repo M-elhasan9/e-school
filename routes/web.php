@@ -5,15 +5,14 @@ use Inertia\Inertia;
 use App\Http\Middleware\RoleMiddleware;
 
 
-/*Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');*/
 Route::get('/', function () {
-    return view('home.index');
+    return Inertia::render('Welcome');
 })->name('home');
+
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 // Home sayfaları
 Route::get('/courses', function () {
     return view('home.courses');
@@ -36,7 +35,6 @@ Route::get('/student/dashboard', function () {
     Route::get('/student/lesson', function () {
         return view('student.lesson');
     })->name('student.lesson');
-
 
 
 Route::get('/admin', function () {
@@ -84,5 +82,6 @@ Route::get('/admin/users/edit', function () {
 })->name('edit_users');
 
 
+// Laravel Breeze / Fortify gibi auth routeleri
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

@@ -8,7 +8,7 @@
         height: 100%;
         margin: 0;
         padding: 0;
-        background: linear-gradient(135deg, #ebe2f3, #d6bcee, #d0a7f5); /* Açık mor arka plan */
+        background: linear-gradient(135deg, #ebe2f3, #d6bcee, #d0a7f5);
         font-family: 'Roboto', sans-serif;
     }
 
