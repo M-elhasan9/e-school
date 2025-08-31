@@ -14,12 +14,10 @@ class PasswordResetLinkController extends Controller
     /**
      * Show the password reset link request page.
      */
-    public function create(Request $request): Response
-    {
-        return Inertia::render('auth/ForgotPassword', [
-            'status' => $request->session()->get('status'),
-        ]);
-    }
+      public function create()
+{
+    return view('auth.forgot-password');
+}
 
     /**
      * Handle an incoming password reset link request.

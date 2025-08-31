@@ -14,6 +14,30 @@ Route::get('/', function () {
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+// Home sayfaları
+Route::get('/courses', function () {
+    return view('home.courses');
+})->name('courses');
+
+Route::get('/details', function () {
+    return view('home.details');
+})->name('details');
+
+// Student sayfaları
+
+Route::get('/student/dashboard', function () {
+        return view('student.dashboard');
+    })->name('student.dashboard');
+
+    Route::get('/student/course', function () {
+        return view('student.course');
+    })->name('student.course');
+
+    Route::get('/student/lesson', function () {
+        return view('student.lesson');
+    })->name('student.lesson');
+
+
 
 Route::get('/admin', function () {
     return 'Welcome, Admin!';
