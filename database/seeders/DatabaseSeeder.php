@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,14 +17,15 @@ class DatabaseSeeder extends Seeder
     {
 
         User::factory(10)->create();
+        Course::factory(50)->create();
 
-    -
+
         User::firstOrCreate(
             ['email' => 'admin@example.com'],
             [
                 'name' => 'Admin User',
                 'password' => Hash::make('password'),
-                'role' => 'admin',
+                'is_teacher' => true,
             ]
         );
 
@@ -33,7 +35,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Student User',
                 'password' => Hash::make('password'),
-                'role' => 'student',
+                'is_teacher' => false,
             ]
         );
     }
