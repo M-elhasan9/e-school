@@ -6,11 +6,11 @@ use App\Http\Middleware\RoleMiddleware;
 
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    return view('home.index');
 })->name('home');
 
 Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
+    return view('student.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Home sayfaları

@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-
         User::firstOrCreate(
             ['email' => 'student@example.com'],
             [

@@ -46,10 +46,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function courses()
-{
-    return $this->belongsToMany(Course::class, 'enrollments');
-}
 
 public function enrollments()
 {
@@ -65,5 +61,25 @@ public function isStudent()
 {
     return $this->role === 'student';
 }
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class)->withTimestamps();
+        // ->withPivot(['role', 'enrolled_at']); // if you added pivot fields
+    }
+
+    // Handy scopes if you want to separate teachers/students
+    public function teachingCourses()
+    {
+        return $this->belongsToMany(Course::class)
+            ->withTimestamps()
+            ->where('is_teacher', true);
+    }
+
+    public function learningCourses()
+    {
+        return $this->belongsToMany(Course::class)
+            ->withTimestamps()
+            ->where('is_teacher', false);
+    }
 
 }

@@ -20,8 +20,21 @@
         <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
 
         {{-- Yeni eklenen linkler --}}
-        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
-        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+        @if (Route::has('login'))
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth
+                    <a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log out!</a>
+                @else
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+
+                    @if (Route::has('register'))
+                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+                    @endif
+                @endauth
+            </div>
+        @endif
+
+
     </ul>
 </div>
 
