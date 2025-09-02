@@ -18,10 +18,11 @@ class RegisteredUserController extends Controller
     /**
      * Show the registration page.
      */
-    public function create(): Response
-    {
-        return Inertia::render('auth/Register');
-    }
+  public function create()
+{
+    return view('auth.register');
+}
+
 
     /**
      * Handle an incoming registration request.
@@ -46,8 +47,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return to_route('dashboard');
+        return to_route('home');
     }
 
-    
+
 }

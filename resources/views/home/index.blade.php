@@ -3,32 +3,10 @@
 @section('title', 'Home Page')
 @section('content')
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-   <div class="container">
-     <a class="navbar-brand" href="index.html"><span>Study</span>Lab</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="oi oi-menu"></span> Menu
-   </button>
 
-  <div class="collapse navbar-collapse" id="ftco-nav">
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Course</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Instructor</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-
-        {{-- Yeni eklenen linkler --}}
-        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
-        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
-    </ul>
-</div>
-</div>
-</nav>
 <!-- END nav -->
 
-<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');">
+<div class="hero-wrap js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg')}}');">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
@@ -36,7 +14,7 @@
         <span class="subheading">Welcome to StudyLab</span>
         <h1 class="mb-4">We Are Online Platform For Make Learn</h1>
         <p class="caps">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-        <p class="mb-0"><a href="#" class="btn btn-primary">Our Course</a> <a href="#" class="btn btn-white">Learn More</a></p>
+        <p class="mb-0"><a href="{{route('courses')}}" class="btn btn-primary">Our Course</a> <a href="#" class="btn btn-white">Learn More</a></p>
     </div>
 </div>
 </div>
@@ -54,7 +32,7 @@
     </div>
     <div class="row justify-content-center">
      <div class="col-md-3 col-lg-2">
-        <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url(images/work-1.jpg);">
+        <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-1.jpg')}}');">
            <div class="text w-100 text-center">
               <h3>IT &amp; Software</h3>
               <span>100 course</span>
@@ -62,7 +40,7 @@
       </a>
   </div>
   <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url(images/work-9.jpg);">
+    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-9.jpg')}}');">
        <div class="text w-100 text-center">
           <h3>Music</h3>
           <span>100 course</span>
@@ -70,7 +48,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url(images/work-3.jpg);">
+    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-3.jpg')}}');">
        <div class="text w-100 text-center">
           <h3>Photography</h3>
           <span>100 course</span>
@@ -78,7 +56,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url(images/work-5.jpg);">
+    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-5.jpg')}}');">
        <div class="text w-100 text-center">
           <h3>Marketing</h3>
           <span>100 course</span>
@@ -86,7 +64,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url(images/work-8.jpg);">
+    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-8.jpg')}}');">
        <div class="text w-100 text-center">
           <h3>Health</h3>
           <span>100 course</span>
@@ -94,7 +72,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url(images/work-6.jpg);">
+    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-6.jpg')}}');">
        <span class="text w-100 text-center">
           <h3>Audio Video</h3>
           <span>100 course</span>
@@ -119,7 +97,7 @@
     <div class="row">
        <div class="col-md-4 ftco-animate">
           <div class="project-wrap">
-             <a href="#" class="img" style="background-image: url(images/work-1.jpg);">
+             <a href="#" class="img" style="background-image: url('{{ asset('images/bg_1.jpg')}}');">
                 <span class="price">Software</span>
             </a>
             <div class="text p-4">
@@ -134,7 +112,7 @@
    </div>
    <div class="col-md-4 ftco-animate">
       <div class="project-wrap">
-         <a href="#" class="img" style="background-image: url(images/work-2.jpg);">
+         <a href="#" class="img" style="background-image: url('{{ asset('images/work-2.jpg')}}');">
             <span class="price">Software</span>
         </a>
         <div class="text p-4">
@@ -149,7 +127,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url(images/work-3.jpg);">
+     <a href="#" class="img" style="background-image: url('{{ asset('images/work-3.jpg')}}');">
         <span class="price">Software</span>
     </a>
     <div class="text p-4">
@@ -165,7 +143,7 @@
 
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url(images/work-4.jpg);">
+     <a href="#" class="img" style="background-image: url('{{ asset('images/work-4.jpg')}}');">
         <span class="price">Software</span>
     </a>
     <div class="text p-4">
@@ -180,7 +158,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url(images/work-5.jpg);">
+     <a href="#" class="img" style="background-image: url('{{ asset('images/work-5.jpg')}}');">
         <span class="price">Software</span>
     </a>
     <div class="text p-4">
@@ -195,7 +173,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url(images/work-6.jpg);">
+     <a href="#" class="img" style="background-image: url('{{ asset('images/work-6.jpg')}}');">
         <span class="price">Software</span>
     </a>
     <div class="text p-4">
@@ -212,7 +190,7 @@
 </div>
 </section>
 
-<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_4.jpg);">
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url('{{ asset('images/bg_4.jpg')}}');">
  <div class="overlay"></div>
  <div class="container">
     <div class="row">
@@ -263,9 +241,9 @@
             <div class="row">
                <div class="col-md-6 d-flex">
                   <div class="d-flex about-wrap">
-                     <div class="img d-flex align-items-center justify-content-center" style="background-image:url(images/about-1.jpg);">
+                     <div class="img d-flex align-items-center justify-content-center" style="background-image:url('{{ asset('images/about-1.jpg')}}');">
                      </div>
-                     <div class="img-2 d-flex align-items-center justify-content-center" style="background-image:url(images/about.jpg);">
+                     <div class="img-2 d-flex align-items-center justify-content-center" style="background-image:url('{{ asset('images/about.jpg')}}');">
                      </div>
                  </div>
              </div>
@@ -287,7 +265,7 @@
 
 
 <section class="ftco-section testimony-section bg-light">
-   <div class="overlay" style="background-image: url(images/bg_2.jpg);"></div>
+   <div class="overlay" style="background-image: url('{{ asset('images/bg_2.jpg')}}');"></div>
    <div class="container">
     <div class="row pb-4">
       <div class="col-md-7 heading-section ftco-animate">
@@ -312,7 +290,7 @@
                 </p>
                 <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                 <div class="d-flex align-items-center">
-                   <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                   <div class="user-img" style="background-image: url('{{ asset('images/person_1.jpg')}}')"></div>
                    <div class="pl-3">
                       <p class="name">Roger Scott</p>
                       <span class="position">Marketing Manager</span>
@@ -333,7 +311,7 @@
         </p>
         <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
         <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+           <div class="user-img" style="background-image: url('{{ asset('images/person_2.jpg')}}')"></div>
            <div class="pl-3">
               <p class="name">Roger Scott</p>
               <span class="position">Marketing Manager</span>
@@ -354,7 +332,7 @@
         </p>
         <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
         <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
+           <div class="user-img" style="background-image: url('{{ asset('images/person_3.jpg')}}')"></div>
            <div class="pl-3">
               <p class="name">Roger Scott</p>
               <span class="position">Marketing Manager</span>
@@ -375,7 +353,7 @@
         </p>
         <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
         <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+           <div class="user-img" style="background-image: url('{{ asset('images/person_1.jpg')}}')"></div>
            <div class="pl-3">
               <p class="name">Roger Scott</p>
               <span class="position">Marketing Manager</span>
@@ -396,7 +374,7 @@
         </p>
         <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
         <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+           <div class="user-img" style="background-image: url('{{ asset('images/person_2.jpg')}}')"></div>
            <div class="pl-3">
               <p class="name">Roger Scott</p>
               <span class="position">Marketing Manager</span>
@@ -415,7 +393,7 @@
  <div class="container">
     <div class="row justify-content-center">
        <div class="col-md-12 text-center">
-          <div class="img"  style="background-image: url(images/bg_4.jpg);">
+          <div class="img"  style="background-image: url('{{ asset('images/bg_4.jpg')}}');">
              <div class="overlay"></div>
              <h2>We Are StudyLab An Online Learning Center</h2>
              <p>We can manage your dream building A small river named Duden flows by their place</p>
@@ -436,7 +414,7 @@
             <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
             <div class="d-flex video-image align-items-center mt-md-4">
-              <a href="#" class="video img d-flex align-items-center justify-content-center" style="background-image: url(images/about.jpg);">
+              <a href="#" class="video img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/about.jpg') }}');">
                  <span class="fa fa-play-circle"></span>
              </a>
              <h4 class="ml-4">Learn anything from StudyLab, Watch video</h4>
@@ -499,7 +477,7 @@
  <div class="row d-flex">
   <div class="col-lg-4 ftco-animate">
     <div class="blog-entry">
-      <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_1.jpg') }}');">
       </a>
       <div class="text d-block">
          <div class="meta">
@@ -511,14 +489,14 @@
      </div>
      <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
+     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
  </div>
 </div>
 </div>
 
 <div class="col-lg-4 ftco-animate">
     <div class="blog-entry">
-      <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_2.jpg') }}');">
       </a>
       <div class="text d-block">
          <div class="meta">
@@ -530,13 +508,13 @@
      </div>
      <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
+     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
  </div>
 </div>
 </div>
 <div class="col-lg-4 ftco-animate">
     <div class="blog-entry">
-      <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_3.jpg') }}');">
       </a>
       <div class="text d-block">
          <div class="meta">
@@ -548,7 +526,7 @@
      </div>
      <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
+     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
  </div>
 </div>
 </div>

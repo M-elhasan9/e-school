@@ -43,6 +43,10 @@
 html {
   font-family: sans-serif;
   line-height: 1.15;
+  height: 100%; /* flex için gerekli */
+  margin: 0;
+  padding: 0;
+
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
@@ -50,7 +54,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
+height: 100%; /* flex için gerekli */
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
@@ -8587,28 +8593,31 @@ h1, h2, h3, h4, h5,
 
 .hero-wrap {
   width: 100%;
-  height: 100%;
-  position: inherit;
+  height: 100vh; /* min-height yerine height kullan */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../images/bg_1.jpg'); /* inline style kaldır */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-attachment: fixed; }
-  .hero-wrap .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: '';
-    opacity: .5;
-    background: rgba(32, 124, 229, 0);
-    background: -moz-linear-gradient(45deg, rgba(32, 124, 229, 0) 0%, rgba(146, 95, 206, 0) 55%, #f048bb 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(32, 124, 229, 0)), color-stop(55%, rgba(146, 95, 206, 0)), color-stop(100%, #f048bb));
-    background: -webkit-linear-gradient(45deg, rgba(32, 124, 229, 0) 0%, rgba(146, 95, 206, 0) 55%, #f048bb 100%);
-    background: -o-linear-gradient(45deg, rgba(32, 124, 229, 0) 0%, rgba(146, 95, 206, 0) 55%, #f048bb 100%);
-    background: -ms-linear-gradient(45deg, rgba(32, 124, 229, 0) 0%, rgba(146, 95, 206, 0) 55%, #f048bb 100%);
-    background: linear-gradient(45deg, rgba(32, 124, 229, 0) 0%, rgba(146, 95, 206, 0) 55%, #f048bb 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#f048bb', GradientType=1 ); }
+}
+
+.hero-wrap .container {
+  position: relative;
+  z-index: 2; /* overlay'in üstünde */
+}
+.hero-wrap .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  background: linear-gradient(45deg, rgba(32,124,229,0) 0%, rgba(146,95,206,0) 55%, #f048bb 100%);
+  z-index: 1;
+}
   .hero-wrap.hero-wrap-2 {
     height: 600px;
     position: relative;
