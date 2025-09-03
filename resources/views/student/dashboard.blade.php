@@ -2,25 +2,7 @@
 @section('content')
 @section('title',' dashboard ')
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-   <div class="container">
-     <a class="navbar-brand" href="{{ asset('home.index') }}"><span>Study</span>Lab</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="oi oi-menu"></span> Menu
-     </button>
 
-     <div class="collapse navbar-collapse" id="ftco-nav">
-       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a href="{{ asset('home.index') }}" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="{{ asset('about.html') }}" class="nav-link">About</a></li>
-					<li class="nav-item active"><a href="{{ asset('course.html') }}" class="nav-link">Course</a></li>
-					<li class="nav-item"><a href="{{ asset('instructor.html') }}" class="nav-link">Instructor</a></li>
-					<li class="nav-item"><a href="{{ asset('blog.html') }}" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="{{ asset('contact.html') }}" class="nav-link">Contact</a></li>
-				</ul>
-     </div>
-   </div>
- </nav>
  <!-- END nav -->
 
  <section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_2.jpg') }}');">
@@ -28,7 +10,7 @@
   <div class="container">
     <div class="row no-gutters slider-text align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
-       <p class="breadcrumbs"><span class="mr-2"><a href="{{ asset('index.html') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span>About us <i class="fa fa-chevron-right"></i></span></p>
+       <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span>About us <i class="fa fa-chevron-right"></i></span></p>
        <h1 class="mb-0 bread">About Us</h1>
      </div>
    </div>

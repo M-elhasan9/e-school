@@ -7,17 +7,21 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up(): void
-    {
-        Schema::create('enrollments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('enrollments', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('course_id')->constrained()->cascadeOnDelete();
+        $table->timestamp('enrolled_at')->nullable()->useCurrent();
+        $table->timestamps();
 
-    public function down(): void
-    {
-        Schema::dropIfExists('enrollments');
-    }
+        $table->unique(['user_id','course_id']);
+    });
+}
+
+public function down(): void
+{
+    Schema::dropIfExists('enrollments');
+}
+
 };
