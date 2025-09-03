@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
 @section('title',' course ')
-
-
 <body>
 
 	<!-- END nav -->

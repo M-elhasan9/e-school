@@ -3,9 +3,6 @@
 @section('title', 'Home Page')
 @section('content')
 <body>
-
-<!-- END nav -->
-
 <div class="hero-wrap js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg')}}');">
   <div class="overlay"></div>
   <div class="container">

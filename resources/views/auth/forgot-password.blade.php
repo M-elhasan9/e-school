@@ -8,7 +8,7 @@
         height: 100%;
         margin: 0;
         padding: 0;
-        background-color: #8c82ff; /* Açık mor arka plan */
+         background: linear-gradient(135deg, #ebe2f3, #d6bcee, #d0a7f5);
         font-family: 'Roboto', sans-serif;
     }
 
@@ -33,7 +33,7 @@
     }
 
     h3 {
-        color: #6c63ff; /* Primary purple */
+        color: #c388f7; /* Primary purple */
         text-align: center;
     }
 

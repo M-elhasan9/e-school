@@ -8,7 +8,7 @@
         height: 100%;
         margin: 0;
         padding: 0;
-        background: linear-gradient(135deg, #ebe2f3, #d6bcee, #d0a7f5); /* Açık mor arka plan */
+        background: linear-gradient(135deg, #ebe2f3, #d6bcee, #d0a7f5);
         font-family: 'Roboto', sans-serif;
     }
 
@@ -32,7 +32,7 @@
     }
 
     .text-primary {
-        color: #6c63ff !important; /* Primary purple */
+        color: #c388f7 !important; /* Primary purple */
     }
 
     .btn-primary {
@@ -56,7 +56,7 @@
 
     input.form-control:focus {
         border-color: #6c63ff;
-        box-shadow: 0 0 5px rgba(122, 117, 208, 0.5);
+        box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
     }
 </style>
 
