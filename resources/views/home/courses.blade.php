@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@section('content')
 @section('title',' courses ')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,115 +81,27 @@
 					</div>
 				</div>
 				<div class="col-lg-9">
-					<div class="row">
-						<div class="col-md-6 d-flex align-items-stretch ftco-animate">
-							<div class="project-wrap">
-								<a href="#" class="img" style="background-image: url('{{ asset('images/work-1.jpg') }}');">
-									<span class="price">Software</span>
-								</a>
-								<div class="text p-4">
-									<h3><a href="#">Design for the web with adobe photoshop</a></h3>
-									<p class="advisor">Advisor <span>Tony Garret</span></p>
-									<ul class="d-flex justify-content-between">
-										<li><span class="flaticon-shower"></span>2300</li>
-										<li class="price">$199</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 d-flex align-items-stretch ftco-animate">
-							<div class="project-wrap">
-								<a href="#" class="img" style="background-image: url('{{ asset('images/work-2.jpg') }}');">
-									<span class="price">Software</span>
-								</a>
-								<div class="text p-4">
-									<h3><a href="#">Design for the web with adobe photoshop</a></h3>
-									<p class="advisor">Advisor <span>Tony Garret</span></p>
-									<ul class="d-flex justify-content-between">
-										<li><span class="flaticon-shower"></span>2300</li>
-										<li class="price">$199</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 d-flex align-items-stretch ftco-animate">
-							<div class="project-wrap">
-								<a href="#" class="img" style="background-image: url('{{ asset('images/work-3.jpg') }}');">
-									<span class="price">Software</span>
-								</a>
-								<div class="text p-4">
-									<h3><a href="#">Design for the web with adobe photoshop</a></h3>
-									<p class="advisor">Advisor <span>Tony Garret</span></p>
-									<ul class="d-flex justify-content-between">
-										<li><span class="flaticon-shower"></span>2300</li>
-										<li class="price">$199</li>
-									</ul>
-								</div>
-							</div>
-						</div>
+    <div class="row">
+        @foreach($courses as $course)
+            <div class="col-md-6 d-flex align-items-stretch ftco-animate">
+                <div class="project-wrap">
+                    <a href="{{ route('courses.show', $course->id) }}" class="img" style="background-image: url('{{ asset($course->image) }}');">
+                        <span class="price">{{ $course->category }}</span>
+                    </a>
+                    <div class="text p-4">
+                        <h3><a href="{{ route('courses.show', $course->id) }}">{{ $course->title }}</a></h3>
+                        <p class="advisor">Advisor <span>{{ $course->instructor }}</span></p>
+                        <ul class="d-flex justify-content-between">
+                            <li><span class="flaticon-shower"></span>{{ $course->students_count }}</li>
+                            <li class="price">${{ $course->price }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
 
-						<div class="col-md-6 d-flex align-items-stretch ftco-animate">
-							<div class="project-wrap">
-								<a href="#" class="img" style="background-image: url('{{ asset('images/work-4.jpg') }}');">
-									<span class="price">Software</span>
-								</a>
-								<div class="text p-4">
-									<h3><a href="#">Design for the web with adobe photoshop</a></h3>
-									<p class="advisor">Advisor <span>Tony Garret</span></p>
-									<ul class="d-flex justify-content-between">
-										<li><span class="flaticon-shower"></span>2300</li>
-										<li class="price">$199</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 d-flex align-items-stretch ftco-animate">
-							<div class="project-wrap">
-								<a href="#" class="img" style="background-image: url('{{ asset('images/work-5.jpg') }}');">
-									<span class="price">Software</span>
-								</a>
-								<div class="text p-4">
-									<h3><a href="#">Design for the web with adobe photoshop</a></h3>
-									<p class="advisor">Advisor <span>Tony Garret</span></p>
-									<ul class="d-flex justify-content-between">
-										<li><span class="flaticon-shower"></span>2300</li>
-										<li class="price">$199</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 d-flex align-items-stretch ftco-animate">
-							<div class="project-wrap">
-								<a href="#" class="img" style="background-image: url('{{ asset('images/work-6.jpg') }}');">
-									<span class="price">Software</span>
-								</a>
-								<div class="text p-4">
-									<h3><a href="#">Design for the web with adobe photoshop</a></h3>
-									<p class="advisor">Advisor <span>Tony Garret</span></p>
-									<ul class="d-flex justify-content-between">
-										<li><span class="flaticon-shower"></span>2300</li>
-										<li class="price">$199</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-5">
-						<div class="col">
-							<div class="block-27">
-								<ul>
-									<li><a href="#">&lt;</a></li>
-									<li class="active"><span>1</span></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&gt;</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</section>
 
