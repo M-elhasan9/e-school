@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-
+    @include('navbar')
     {{-- Buraya her sayfanın kendi içeriği gelecek --}}
     @yield('content')
 

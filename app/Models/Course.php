@@ -8,32 +8,37 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
-      // Kursun dersleri
+
+    protected $fillable = ['title','description','teacher_id'];
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
     }
 
-    // Kursa kayıtlı kullanıcılar (Enrollments üzerinden)
-
+    // pivot: enrollments
     public function users()
+{
+    return $this->belongsToMany(User::class, 'enrollments')
+                ->withTimestamps(); // enrolled_at kaldırıldı
+}
+
+
+    // tekil öğretmen
+    public function teacher()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
-        // ->withPivot(['role', 'enrolled_at']); // if you added pivot fields
+        return $this->belongsTo(User::class, 'teacher_id');
     }
 
-    // Convenience relations
-    public function teachers()
-    {
-        return $this->belongsToMany(User::class)
-            ->withTimestamps()
-            ->where('is_teacher', true);
-    }
-
+    // yardımcı: sadece öğrenciler (is_teacher alanı varsa)
     public function students()
     {
-        return $this->belongsToMany(User::class)
-            ->withTimestamps()
-            ->where('is_teacher', false);
+        return $this->users()->where('is_teacher', false);
+    }
+
+    public function teachers()
+    {
+        return $this->users()->where('is_teacher', true);
     }
 }
+
