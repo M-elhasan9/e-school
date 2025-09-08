@@ -18,7 +18,7 @@ class CourseFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3), // Random 3-word title
-            'description' => $this->faker->paragraph(), // Random paragraph
+            'description' => $this->faker->paragraph(3), // Random paragraph
         ];
     }
 }
