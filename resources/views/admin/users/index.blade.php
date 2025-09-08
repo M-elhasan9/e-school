@@ -28,80 +28,92 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th> # </th>
-                <th> Image </th>
-                <th> Name </th>
-                <th> Email </th>
-                <th> Role </th>
-                <th> Status </th>
-                <th> Actions </th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Is Teacher</th>
+                <th>Courses</th>
+                <th>Lessons</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
+              @foreach($users as $user)
               <tr>
-                <td>1</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->is_teacher ? 'Yes' : 'No' }}</td>
                 <td>
-                  <img src="{{ asset('assets/images/users/john.jpg') }}" alt="John Doe" class="rounded-circle" width="40">
+                  @if($user->is_teacher)
+                    @foreach($user->teachingCourses as $course)
+                      <span class="badge badge-info">{{ $course->title }}</span>
+                    @endforeach
+                  @else
+                    @foreach($user->learningCourses as $course)
+                      <span class="badge badge-info">{{ $course->title }}</span>
+                    @endforeach
+                  @endif
                 </td>
-                <td>John Doe</td>
-                <td>john@example.com</td>
-                <td>Admin</td>
-                <td><label class="badge badge-success">Active</label></td>
                 <td>
-                  <button class="btn btn-sm btn-primary">
+                  @foreach($user->lessons as $lesson)
+                    <span class="badge badge-secondary">{{ $lesson->title }}</span>
+                  @endforeach
+                </td>
+                <td>
+                  <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-warning">
                     <i class="mdi mdi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="mdi mdi-delete"></i>
-                  </button>
+                  </a>
+
+                  <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete(this);">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">
+                      <i class="mdi mdi-delete"></i>
+                    </button>
+                  </form>
+
                 </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>
-                  <img src="{{ asset('assets/images/users/jane.jpg') }}" alt="Jane Smith" class="rounded-circle" width="40">
-                </td>
-                <td>Jane Smith</td>
-                <td>jane@example.com</td>
-                <td>Instructor</td>
-                <td><label class="badge badge-success">Active</label></td>
-                <td>
-                  <button class="btn btn-sm btn-primary">
-                    <i class="mdi mdi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="mdi mdi-delete"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>
-                  <img src="{{ asset('assets/images/users/michael.jpg') }}" alt="Michael Brown" class="rounded-circle" width="40">
-                </td>
-                <td>Michael Brown</td>
-                <td>michael@example.com</td>
-                <td>Student</td>
-                <td><label class="badge badge-secondary">Inactive</label></td>
-                <td>
-                  <button class="btn btn-sm btn-primary">
-                    <i class="mdi mdi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="mdi mdi-delete"></i>
-                  </button>
-                </td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
+
         <div class="mt-3">
-          <button class="btn btn-outline-primary">
-            <i class="mdi mdi-plus"></i> Add New User
-          </button>
+            {{ $users->links('vendor.pagination.custom') }}
         </div>
+
+        <div class="mt-3">
+          <a href="{{ route('admin.users.create') }}" class="btn btn-outline-primary">
+            <i class="mdi mdi-plus"></i> Add New User
+          </a>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function confirmDelete(form) {
+    event.preventDefault(); // Formun anında submit olmasını engelle
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This action cannot be undone!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit(); // Seçilen formu gönder
+        }
+    });
+    return false; // Default submit’i iptal et
+}
+</script>

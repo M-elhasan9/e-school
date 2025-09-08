@@ -1,58 +1,67 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 
+// Admin Controller importları
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\LessonController;
+use App\Http\Controllers\Admin\UserController;
+
+// Logout
 Route::get('/logout', function () {
     Auth::logout();
     return redirect('/'); // Çıkış yaptıktan sonra ana sayfaya yönlendir
 })->name('logout');
 
-// Genel sayfalar
-Route::get('/', [HomeController::class, 'index'])->name('home'); // ana sayfa
-Route::get('/courses', [HomeController::class, 'courses'])->name('courses'); // kurs listesi
-Route::get('/courses/{id}', [HomeController::class, 'showCourse'])->name('courses.show'); // kurs detay
-Route::get('/details', [HomeController::class, 'details'])->name('details'); // eğer detay sayfası controller ile yapılacaksa
+// Ana sayfa
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Student panel (middleware ile koru → sadece öğrenci)
-Route::middleware(['auth', 'role:student'])->group(function () {
+// Genel sayfalar
+Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
+Route::get('/courses/{id}', [HomeController::class, 'showCourse'])->name('courses.show');
+Route::get('/details', [HomeController::class, 'details'])->name('details');
+
+// Student sayfaları (sadece auth ile korunan)
+Route::middleware(['auth'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
     Route::get('/student/courses/{id}', [StudentController::class, 'viewCourse'])->name('student.course');
     Route::get('/student/lessons/{id}', [StudentController::class, 'viewLesson'])->name('student.lesson');
 });
 
-// Admin panel
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+// Admin sayfaları (sadece auth ile korunan)
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 
-    // Admin Courses
-    Route::prefix('admin/courses')->group(function () {
-        Route::get('/', function () { return view('admin.courses.index'); })->name('admin.courses.index');
-        Route::get('/create', function () { return view('admin.courses.create'); })->name('admin.courses.create');
-        Route::get('/edit', function () { return view('admin.courses.edit'); })->name('admin.courses.edit');
-    });
+    // Dashboard
+    Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
 
-    // Admin Lessons
-    Route::prefix('admin/lessons')->group(function () {
-        Route::get('/', function () { return view('admin.lessons.index'); })->name('admin.lessons.index');
-        Route::get('/create', function () { return view('admin.lessons.create'); })->name('admin.lessons.create');
-        Route::get('/edit', function () { return view('admin.lessons.edit'); })->name('admin.lessons.edit');
-    });
+    // Courses CRUD
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+    Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 
-    // Admin Users
-    Route::prefix('admin/users')->group(function () {
-        Route::get('/', function () { return view('admin.users.index'); })->name('admin.users.index');
-        Route::get('/create', function () { return view('admin.users.create'); })->name('admin.users.create');
-        Route::get('/edit', function () { return view('admin.users.edit'); })->name('admin.users.edit');
-    });
-    
+    // Lessons CRUD
+    Route::get('/lessons', [LessonController::class, 'index'])->name('lessons.index');
+    Route::get('/lessons/create', [LessonController::class, 'create'])->name('lessons.create');
+    Route::post('/lessons', [LessonController::class, 'store'])->name('lessons.store');
+    Route::get('/lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
+    Route::put('/lessons/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
+    Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+
+    // Users CRUD
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
-// Laravel Breeze / Fortify gibi auth routeleri
+// Auth ve settings routeleri
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
