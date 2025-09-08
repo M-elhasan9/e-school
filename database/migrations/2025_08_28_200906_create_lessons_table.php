@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content')->nullable();
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->integer('order')->default(1);
             $table->timestamps();
         });
     }

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory; // ← ekle
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
+    use HasFactory; // ← ekle
+
     protected $fillable = ['title','content','course_id','order'];
 
     public function course()
@@ -21,4 +24,3 @@ class Lesson extends Model
                     ->withPivot(['status','completed_at']);
     }
 }
-
