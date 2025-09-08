@@ -19,6 +19,16 @@
                     <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                     <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                 @endguest
+
+                {{-- Giriş yapmış kullanıcılar için logout --}}
+                @auth
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link" style="display:inline; padding:0; border:none;">Logout</button>
+                        </form>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

@@ -13,7 +13,7 @@
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item"><a href="#">Lessons</a></li>
+      <li class="breadcrumb-item"><a href="">Lessons</a></li>
       <li class="breadcrumb-item active" aria-current="page">Add New</li>
     </ul>
   </nav>
@@ -24,44 +24,52 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Lesson Details</h4>
-        <form enctype="multipart/form-data">
+
+        <form action="{{route('lessons.store')}}" method="POST" enctype="multipart/form-data">
+          @csrf
           <div class="form-group">
-            <label for="lessonTitle">Lesson Title</label>
-            <input type="text" class="form-control" id="lessonTitle" placeholder="Enter lesson title">
+            <label >Lesson Title</label>
+            <input type="text" name="title" class="form-control"  placeholder="Enter lesson title">
           </div>
 
           <div class="form-group">
-            <label for="course">Course</label>
-            <select class="form-control" id="course">
-              <option>Web Development</option>
-              <option>Mobile App Design</option>
-              <option>Machine Learning</option>
-            </select>
+            <label >Content</label>
+            <textarea name="content" class="form-control" placeholder="Enter lesson content"></textarea>
           </div>
 
           <div class="form-group">
-            <label for="duration">Duration</label>
-            <input type="text" class="form-control" id="duration" placeholder="Enter duration (e.g., 45 min)">
+            <label>Course Name</label>
+                <select name="course_id" class="form-control">
+                @foreach($courses as $course)
+                    <option value="{{ $course->id }}">
+                        {{ $course->title }}
+                </option>
+               @endforeach
+           </select>
           </div>
 
-          <div class="form-group">
-            <label for="lessonImage">Lesson Image</label>
-            <input type="file" class="form-control-file" id="lessonImage">
+         <div class="form-group">
+            <label>Duration</label>
+            <input type="text" name="duration" class="form-control"  placeholder="Course duration e.g. 12 weeks">
           </div>
-
           <div class="form-group">
             <label>Status</label>
-            <select class="form-control">
-              <option value="1">Active</option>
-              <option value="0">Inactive</option>
+            <select name="status" class="form-control">
+              <option >Active</option>
+              <option >Inactive</option>
             </select>
           </div>
 
+         <div class="form-group">
+            <label>Lesson Image</label>
+            <input type="file" name="image" class="form-control-file">
+          </div>
           <button type="submit" class="btn btn-gradient-primary mt-3">
             <i class="mdi mdi-plus"></i> Add Lesson
           </button>
-          <button type="reset" class="btn btn-light mt-3">Cancel</button>
+          <a href="{{route('lessons.index')}}" class="btn btn-light mt-3">Cancel</a>
         </form>
+
       </div>
     </div>
   </div>

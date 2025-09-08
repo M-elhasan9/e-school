@@ -12,8 +12,8 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item"><a href="#">Courses</a></li>
+      <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="">Courses</a></li>
       <li class="breadcrumb-item active" aria-current="page">Add New</li>
     </ul>
   </nav>
@@ -24,58 +24,59 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Course Details</h4>
-        <form>
-          <div class="form-group">
-            <label for="courseName">Course Name</label>
-            <input type="text" class="form-control" id="courseName" placeholder="Enter course name">
-          </div>
 
+        {{-- Form backend ile çalışacak şekilde --}}
+        <form action="{{route('courses.store')}}" method="POST" enctype="multipart/form-data">
+          @csrf
           <div class="form-group">
-            <label for="image">Course Image</label>
-            <input type="file" class="form-control" id="image">
+            <label>Course Name</label>
+            <input type="text" name="title" class="form-control"  placeholder="Enter course name" >
           </div>
+             <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="form-control"  placeholder="Enter course description"></textarea>
+          </div>
+         <div class="form-group">
+            <label>Teacher_id</label>
+            <select name="teacher_id" class="form-control">
+                @foreach($teachers as $teacher)
+                    <option value="{{ $teacher->id }}">
+    {{ $teacher->name }}
+</option>
 
+                @endforeach
+           </select>
+
+          </div>
           <div class="form-group">
-            <label for="instructor">Instructor</label>
-            <input type="text" class="form-control" id="instructor" placeholder="Instructor name">
+            <label>Price</label>
+            <input type="number" name="price" class="form-control"  placeholder="Course price">
           </div>
+         <div class="form-group">
+            <label>Duration</label>
+            <input type="text" name="duration" class="form-control"  placeholder="Course duration e.g. 12 weeks">
 
-          <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" placeholder="Course price">
           </div>
+           <div class="form-group">
+            <label>Enrolled Stusent</label>
+            <input type="text" name="enrolled_students" class="form-control"  placeholder="enrolled_student" >
 
-          <div class="form-group">
-            <label for="level">Level</label>
-            <select class="form-control" id="level">
-              <option>Beginner</option>
-              <option>Intermediate</option>
-              <option>Advanced</option>
-            </select>
           </div>
-
-          <div class="form-group">
-            <label for="duration">Duration</label>
-            <input type="text" class="form-control" id="duration" placeholder="Course duration e.g. 12 weeks">
-          </div>
-
-          <div class="form-group">
-            <label for="studentsCount">Enrolled Students</label>
-            <input type="number" class="form-control" id="studentsCount" placeholder="Number of students">
-          </div>
-
           <div class="form-group">
             <label>Status</label>
-            <select class="form-control" id="status">
-              <option value="1">Active</option>
-              <option value="0">Inactive</option>
+            <select name="status" class="form-control">
+              <option >Active</option>
+              <option >Inactive</option>
             </select>
           </div>
-
+           <div class="form-group">
+            <label>Course Image</label>
+            <input type="file" name="image" class="form-control">
+          </div>
           <button type="submit" class="btn btn-gradient-primary mt-3">
             <i class="mdi mdi-plus"></i> Add Course
           </button>
-          <button type="reset" class="btn btn-light mt-3">Cancel</button>
+          <a href="{{ route('courses.index') }}" class="btn btn-light mt-3">Cancel</a>
         </form>
       </div>
     </div>
