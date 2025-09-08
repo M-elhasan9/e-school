@@ -1,36 +1,16 @@
 @extends('layouts.app')
-@section('content') 
-@section('title',' course ')  
-
-	
+@section('content')
+@section('title',' course ')
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="{{ asset('index.html') }}"><span>Study</span>Lab</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="{{ asset('index.html') }}" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="{{ asset('about.html') }}" class="nav-link">About</a></li>
-					<li class="nav-item active"><a href="{{ asset('course.html') }}" class="nav-link">Course</a></li>
-					<li class="nav-item"><a href="{{ asset('instructor.html') }}" class="nav-link">Instructor</a></li>
-					<li class="nav-item"><a href="{{ asset('blog.html') }}" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="{{ asset('contact.html') }}" class="nav-link">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
 	<!-- END nav -->
-	
+
 	<section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_2.jpg') }}');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate pb-5 text-center">
-					<p class="breadcrumbs"><span class="mr-2"><a href="{{ asset('index.html') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span>Course Lists <i class="fa fa-chevron-right"></i></span></p>
+					<p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span>Course Lists <i class="fa fa-chevron-right"></i></span></p>
 					<h1 class="mb-0 bread">Course Lists</h1>
 				</div>
 			</div>
@@ -270,15 +250,15 @@
 					</div>
 				</div>
 			</footer>
-			
-			
+
+
 
 			<!-- loader -->
 			<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-			
+
 		</body>
-		
+
 
 @endsection

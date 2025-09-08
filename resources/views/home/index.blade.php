@@ -3,49 +3,6 @@
 @section('title', 'Home Page')
 @section('content')
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-   <div class="container">
-     <a class="navbar-brand" href="{{ asset('index.html') }}"><span>Study</span>Lab</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="oi oi-menu"></span> Menu
-   </button>
-
-  <div class="collapse navbar-collapse" id="ftco-nav">
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Course</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Instructor</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-
-        {{-- Yeni eklenen linkler --}}
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log out!</a>
-                @else
-                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
-
-                    @if (Route::has('register'))
-                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
-                    @endif
-                @endauth
-            </div>
-        @endif
-
-
-    </ul>
-</div>
-
-
-
-
-
-</div>
-</nav>
-<!-- END nav -->
-
 <div class="hero-wrap js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg')}}');">
   <div class="overlay"></div>
   <div class="container">
@@ -54,7 +11,7 @@
         <span class="subheading">Welcome to StudyLab</span>
         <h1 class="mb-4">We Are Online Platform For Make Learn</h1>
         <p class="caps">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-        <p class="mb-0"><a href="#" class="btn btn-primary">Our Course</a> <a href="#" class="btn btn-white">Learn More</a></p>
+        <p class="mb-0"><a href="{{route('courses')}}" class="btn btn-primary">Our Course</a> <a href="#" class="btn btn-white">Learn More</a></p>
     </div>
 </div>
 </div>
