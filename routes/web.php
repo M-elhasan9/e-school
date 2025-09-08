@@ -1,35 +1,39 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Auth;
 
 // Admin Controller importları
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\UserController;
 
+// Logout
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Çıkış yaptıktan sonra ana sayfaya yönlendir
+})->name('logout');
+
 // Ana sayfa
-Route::get('/', fn() => view('home.index'))->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Dashboard (öğrenci genel dashboard)
-Route::get('dashboard', fn() => view('student.dashboard'))
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Genel sayfalar
+Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
+Route::get('/courses/{id}', [HomeController::class, 'showCourse'])->name('courses.show');
+Route::get('/details', [HomeController::class, 'details'])->name('details');
 
-// Home sayfaları
-Route::get('/courses', fn() => view('home.courses'))->name('courses');
-Route::get('/details', fn() => view('home.details'))->name('details');
-
-// Student sayfaları
-Route::prefix('student')->name('student.')->group(function () {
-    Route::get('/dashboard', fn() => view('student.dashboard'))->name('dashboard');
-    Route::get('/course', fn() => view('student.course'))->name('course');
-    Route::get('/lesson', fn() => view('student.lesson'))->name('lesson');
+// Student sayfaları (middleware ile korunan)
+Route::middleware(['auth', 'role:student'])->group(function () {
+    Route::get('/student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
+    Route::get('/student/courses/{id}', [StudentController::class, 'viewCourse'])->name('student.course');
+    Route::get('/student/lessons/{id}', [StudentController::class, 'viewLesson'])->name('student.lesson');
 });
 
 // Admin sayfaları
-    Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
@@ -51,19 +55,18 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 
     // Users CRUD
-Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
-
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 // Role bazlı test (opsiyonel)
 Route::get('/student', fn() => 'Welcome, Student!')
     ->middleware(RoleMiddleware::class.':student');
 
-// Auth ve settings routeleri
+// Ekstra auth ve settings dosyaları
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

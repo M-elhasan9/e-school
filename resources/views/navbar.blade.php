@@ -13,6 +13,8 @@
                 <li class="nav-item"><a href="#" class="nav-link">Instructor</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                 <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link">Logout</a></li>
+                
 
                 {{-- Giriş yapmamış kullanıcılar için linkler --}}
                 @guest
