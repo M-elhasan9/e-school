@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- endinject -->
 
     <!-- Plugin css for this page -->
@@ -33,6 +35,26 @@
 
         {{-- Sidebar --}}
         @include('admin.partials.sidebar')
+        {{-- Flash Success Message --}}
+@if(session('success'))
+  <div id="flashMessage"
+       style="position: fixed; top: 20px; right: 20px; min-width: 300px; z-index: 9999; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); color: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center;">
+    <span>{{ session('success') }}</span>
+    <button onclick="closeFlash()"
+            style="background: transparent; border: none; color: white; font-size: 18px; cursor: pointer;">&times;</button>
+  </div>
+
+  <script>
+    function closeFlash() {
+      document.getElementById('flashMessage').style.display = 'none';
+    }
+    setTimeout(() => {
+      const flash = document.getElementById('flashMessage');
+      if(flash) flash.style.display = 'none';
+    }, 5000);
+  </script>
+@endif
+
 
         <div class="main-panel">
           <div class="content-wrapper">
@@ -56,5 +78,7 @@
     <script src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </body>
 </html>

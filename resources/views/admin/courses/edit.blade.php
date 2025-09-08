@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Course')
+@section('title', 'Edit User')
 
 @section('content')
 <div class="page-header">
   <h3 class="page-title">
     <span class="page-title-icon bg-gradient-primary text-white mr-2">
-      <i class="mdi mdi-pencil-box"></i>
+      <i class="mdi mdi-account-edit"></i>
     </span>
-    Edit Course
+    Edit User
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item"><a href="#">Courses</a></li>
+      <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="">Users</a></li>
       <li class="breadcrumb-item active" aria-current="page">Edit</li>
     </ul>
   </nav>
@@ -23,60 +23,65 @@
   <div class="col-lg-8 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Course Details</h4>
-        <form>
-          <div class="form-group">
-            <label for="courseName">Course Name</label>
-            <input type="text" class="form-control" id="courseName" value="Web Development">
-          </div>
+        <h4 class="card-title">User Details</h4>
 
+        <form action="{{route('courses.update',$course->id)}}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
           <div class="form-group">
-            <label for="image">Course Image</label>
-            <input type="file" class="form-control" id="image">
+            <label>Course Name</label>
+            <input type="text" name="title" class="form-control"  placeholder="Enter course name" value="{{$course->title}}">
           </div>
-
+             <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="form-control"  placeholder="Enter course description" >{{$course->description}}</textarea>
+          </div>
           <div class="form-group">
-            <label for="instructor">Instructor</label>
-            <input type="text" class="form-control" id="instructor" value="John Doe">
-          </div>
+            <label>Teacher_id</label>
+            <select name="teacher_id" class="form-control">
+                @foreach($teachers as $teacher)
+                    <option value="{{ $teacher->id }}" {{ $course->teacher_id == $teacher->id ? 'selected' : '' }}>
+                    {{ $teacher->name }}
+                </option>
+                @endforeach
+           </select>
 
+          </div>
           <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" value="199">
+            <label>Price</label>
+            <input type="number" name="price" class="form-control"  placeholder="Course price" value="{{$course->price}}">
           </div>
+         <div class="form-group">
+            <label>Duration</label>
+            <input type="text" name="duration" class="form-control"  placeholder="Course duration e.g. 12 weeks" value="{{$course->duration}}">
 
-          <div class="form-group">
-            <label for="level">Level</label>
-            <select class="form-control" id="level">
-              <option selected>Beginner</option>
-              <option>Intermediate</option>
-              <option>Advanced</option>
-            </select>
           </div>
+           <div class="form-group">
+            <label>Enrolled Stusent</label>
+<input type="number" name="enrolled_students" class="form-control" value="{{$course->enrolled_students}}">
 
-          <div class="form-group">
-            <label for="duration">Duration</label>
-            <input type="text" class="form-control" id="duration" value="12 weeks">
           </div>
-
-          <div class="form-group">
-            <label for="studentsCount">Enrolled Students</label>
-            <input type="number" class="form-control" id="studentsCount" value="120">
-          </div>
-
           <div class="form-group">
             <label>Status</label>
-            <select class="form-control" id="status">
-              <option value="1" selected>Active</option>
-              <option value="0">Inactive</option>
+            <select name="status" class="form-control">
+              <option selected>{{$course->status}}</option>
+              <option >Active</option>
+              <option >Inactive</option>
             </select>
           </div>
-
+           <div class="form-group">
+            <label>Course Image</label>
+            <input type="file" name="image" class="form-control">
+            @if($course->image)
+                  <img src="{{ asset('Course/' . $course->image) }}" alt="Course Image" width="50">
+            @endif
+            </div>
           <button type="submit" class="btn btn-gradient-primary mt-3">
             <i class="mdi mdi-content-save"></i> Save Changes
           </button>
-          <button type="reset" class="btn btn-light mt-3">Cancel</button>
+          <a href="{{ route('admin.users.index') }}" class="btn btn-light mt-3">Cancel</a>
         </form>
+
       </div>
     </div>
   </div>
