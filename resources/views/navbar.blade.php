@@ -10,8 +10,13 @@
                 <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="{{route('courses')}}" class="nav-link">Course</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Instructor</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+               <li class="nav-item">
+  <a href="{{ route('instructors') }}"
+     class="nav-link {{ request()->routeIs('instructors*') ? 'active' : '' }}">
+     Instructor
+  </a>
+</li>
+
                 <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
                  <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link">Logout</a></li>
                 
@@ -22,15 +27,8 @@
                     <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                 @endguest
 
-                {{-- Giriş yapmış kullanıcılar için logout --}}
-                @auth
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit" class="nav-link btn btn-link" style="display:inline; padding:0; border:none;">Logout</button>
-                        </form>
-                    </li>
-                @endauth
+               
+        
             </ul>
         </div>
     </div>

@@ -24,7 +24,7 @@
             <!-- Course Details -->
             <div class="col-lg-8 ftco-animate">
                 <div class="course-detail">
-                    <img src="{{ asset($course->image) }}" alt="{{ $course->title }}" class="img-fluid mb-4">
+                    <img src="{{ $course->image ? asset('Course/'.$course->image) : asset('images/default-course.jpg') }}" class="img-fluid mb-4">
                     <h2>{{ $course->title }}</h2>
                     <p>{{ $course->description }}</p>
 

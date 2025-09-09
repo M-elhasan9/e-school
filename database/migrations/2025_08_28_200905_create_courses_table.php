@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->string('image')->nullable();
+            $table->integer('duration')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->string('status')->nullable(); // ör: active, draft
+
         });
     }
 

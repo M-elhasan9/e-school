@@ -25,20 +25,23 @@ class Course extends Model
 
 
     // tekil öğretmen
-    public function teacher()
-    {
-        return $this->belongsTo(User::class, 'teacher_id');
-    }
+ public function teacher()
+{
+    return $this->belongsTo(User::class, 'teacher_id');
+}
 
-    // yardımcı: sadece öğrenciler (is_teacher alanı varsa)
-    public function students()
-    {
-        return $this->users()->where('is_teacher', false);
-    }
 
-    public function teachers()
-    {
-        return $this->users()->where('is_teacher', true);
-    }
+
+public function students()
+{
+    return $this->users()->wherePivot('is_teacher', false);
+}
+
+
+   public function teachers()
+{
+    return $this->users()->wherePivot('is_teacher', true);
+}
+
 }
 

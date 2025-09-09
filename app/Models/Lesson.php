@@ -12,9 +12,10 @@ class Lesson extends Model
     protected $fillable = ['title','content','course_id','order'];
 
     public function course()
-    {
-        return $this->belongsTo(Course::class);
-    }
+{
+    return $this->belongsTo(Course::class);
+}
+
 
     // opsiyonel: ilerleme takibi pivot ile
     public function users()

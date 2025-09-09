@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
 // Admin Controller importları
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
@@ -21,8 +21,15 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Genel sayfalar
 Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
-Route::get('/courses/{id}', [HomeController::class, 'showCourse'])->name('courses.show');
+Route::get('/courses/{course}', [HomeController::class, 'showCourse'])->name('courses.show');
 Route::get('/details', [HomeController::class, 'details'])->name('details');
+
+// Instructors listesi
+Route::get('/instructors', [HomeController::class, 'instructors'])->name('instructors');
+
+// (Opsiyonel) Tek eğitmen sayfası
+Route::get('/instructors/{user}', [HomeController::class, 'showInstructor'])
+     ->name('instructors.show');
 
 // Student sayfaları (sadece auth ile korunan)
 Route::middleware(['auth'])->group(function () {
@@ -30,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/student/courses/{id}', [StudentController::class, 'viewCourse'])->name('student.course');
     Route::get('/student/lessons/{id}', [StudentController::class, 'viewLesson'])->name('student.lesson');
 });
+
 
 // Admin sayfaları (sadece auth ile korunan)
 Route::prefix('admin')->middleware(['auth'])->group(function () {
