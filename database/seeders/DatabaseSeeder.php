@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Course;
 use App\Models\User;
 use App\Models\Lesson;
+use App\Models\Post;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -59,5 +60,8 @@ class DatabaseSeeder extends Seeder
                 'is_teacher' => false,
             ]
         );
+        // Blog yazıları
+Post::factory(10)->create();
+
     }
 }

@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
     // Ana sayfa → courses gönderilmez
     public function index() {
-        return view('home.index'); // ana sayfa farklı bir view
-    }
+    $recentPosts = Post::latest()->take(3)->get();
+    return view('home.index', compact('recentPosts'));
+}
 
     // Kurs listesi
     public function courses() {

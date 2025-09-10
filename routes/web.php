@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 
 // Admin Controller importları
@@ -62,6 +63,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
+
+Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
 
 
 // Ekstra auth ve settings dosyaları
