@@ -12,7 +12,7 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
       <li class="breadcrumb-item active" aria-current="page">Users</li>
     </ul>
   </nav>
@@ -29,6 +29,7 @@
             <thead>
               <tr>
                 <th>#</th>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Is Teacher</th>
@@ -41,6 +42,11 @@
               @foreach($users as $user)
               <tr>
                 <td>{{ $user->id }}</td>
+                <td>
+<img src="/User/{{$user->image}}" style="width:100px  !important;  height:60px !important; border-radius:8px !important; object-fit:cover;">
+                </td>
+                <td>
+
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->is_teacher ? 'Yes' : 'No' }}</td>

@@ -12,7 +12,7 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
       <li class="breadcrumb-item active" aria-current="page">Lessons</li>
     </ul>
   </nav>
@@ -34,6 +34,8 @@
                 <th>Course</th>
                 <th>Duration</th>
                 <th>Status</th>
+                <th>Video</th>
+                <th>Attachment</th>
                 <th>Image</th>
                 <th>Actions</th>
               </tr>
@@ -53,6 +55,26 @@
                     <label class="badge badge-secondary">Inactive</label>
                   @endif
                 </td>
+                <td>
+  @if($lesson->video_url)
+    <a href="{{ $lesson->video_url }}" target="_blank" class="btn btn-sm btn-primary">
+      <i class="mdi mdi-play-circle"></i> Watch
+    </a>
+  @else
+    -
+  @endif
+</td>
+
+<td>
+  @if($lesson->attachment)
+    <a href="{{ asset('storage/' . $lesson->attachment) }}" target="_blank" class="btn btn-sm btn-success">
+      <i class="mdi mdi-download"></i> Download
+    </a>
+  @else
+    -
+  @endif
+</td>
+
                 <td>
                   <img src="/Lesson/{{$lesson->image}}" style="width:100px; height:60px; border-radius:8px; object-fit:cover;">
                 </td>

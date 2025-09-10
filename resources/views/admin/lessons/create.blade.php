@@ -12,7 +12,7 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
       <li class="breadcrumb-item"><a href="">Lessons</a></li>
       <li class="breadcrumb-item active" aria-current="page">Add New</li>
     </ul>
@@ -59,6 +59,15 @@
               <option >Inactive</option>
             </select>
           </div>
+            <div class="form-group">
+    <label>Video URL</label>
+    <input type="text" name="video_url" class="form-control" placeholder="Enter video URL (YouTube or mp4)">
+</div>
+
+<div class="form-group">
+    <label>Attachment (PDF, DOCX, etc.)</label>
+    <input type="file" name="attachment" class="form-control-file">
+</div>
 
          <div class="form-group">
             <label>Lesson Image</label>

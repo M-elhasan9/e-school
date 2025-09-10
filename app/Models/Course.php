@@ -30,15 +30,18 @@ class Course extends Model
         return $this->belongsTo(User::class, 'teacher_id');
     }
 
-    // yardımcı: sadece öğrenciler (is_teacher alanı varsa)
-    public function students()
-    {
-        return $this->users()->where('is_teacher', false);
-    }
+    // Course.php
+public function students()
+{
+    return $this->belongsToMany(User::class, 'enrollments', 'course_id', 'user_id')
+                ->wherePivot('is_teacher', 0);
+}
 
-    public function teachers()
-    {
-        return $this->users()->where('is_teacher', true);
-    }
+public function teachers()
+{
+    return $this->belongsToMany(User::class, 'enrollments', 'course_id', 'user_id')
+                ->wherePivot('is_teacher', 1);
+}
+
 }
 

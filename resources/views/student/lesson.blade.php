@@ -1,236 +1,75 @@
 @extends('layouts.app')
+@section('title', $lesson->title)
+
 @section('content')
-@section('title',' lesson ')
-<body>
 
- <!-- END nav -->
-
- <section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_2.jpg') }}');">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-end justify-content-center">
-      <div class="col-md-9 ftco-animate pb-5 text-center">
-       <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="index.html">Instructor <i class="fa fa-chevron-right"></i></a></span> <span>Instructor Details <i class="fa fa-chevron-right"></i></span></p>
-       <h1 class="mb-0 bread">Instructor Details</h1>
-     </div>
-   </div>
- </div>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_1.jpg') }}');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{{ route('home') }}">Home <i class="fa fa-chevron-right"></i></a></span>
+                    <span><a href="{{ route('student.course', $lesson->course->id) }}">{{ $lesson->course->title }} <i class="fa fa-chevron-right"></i></a></span>
+                    <span>{{ $lesson->title }}</span>
+                </p>
+                <h1 class="mb-0 bread">{{ $lesson->title }}</h1>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="ftco-section bg-light">
- <div class="container">
-  <div class="row">
-   <div class="col-md-4 ftco-animate d-flex align-items-center align-items-stretch">
-    <div class="staff-2 w-100">
-     <div class="img-wrap d-flex align-items-stretch">
-      <div class="img align-self-stretch d-flex align-items-end" style="background-image: url('{{ asset('images/teacher-1.jpg');">
-       <div class="text mb-4 text-md-center">
-        <h3>Stephen Wilson</h3>
-        <span class="position mb-2">Business</span>
-        <div class="faded">
-         <!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-         <ul class="ftco-social">
-          <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-          <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-          <li class="ftco-animate"><a href="#"><span class="fa fa-google"></span></a></li>
-          <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-        </ul>
-      </div>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 ftco-animate">
 
-  </div>
-</div>
-</div>
-</div>
-<div class="col-md-8 d-flex align-items-center">
-  <div class="staff-detail w-100 pl-md-5">
-   <h3>About</h3>
-   <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-   <h3>Education</h3>
-   <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-   <h3>Experience</h3>
-   <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
- </div>
-</div>
-</div>
-</div>
-</section>
+                {{-- 📸 Dersin Fotoğrafı --}}
+                @if($lesson->image)
+                    <div class="mb-4 text-center">
+                       <img src="{{ asset($lesson->image) }}" alt="{{ $lesson->title }}" class="img-fluid rounded">
+                             alt="{{ $lesson->title }}"
+                             class="img-fluid rounded shadow">
+                    </div>
+                @endif
 
-<section class="ftco-section bg-light ftco-no-pt">
- <div class="container">
-  <div class="row pb-4">
-    <div class="col-md-12 heading-section ftco-animate">
-      <h2 class="mb-4">Course By Stephen Wilson</h2>
-    </div>
-  </div>
-  <div class="row">
-   <div class="col-md-4 ftco-animate">
-    <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{ asset('images/work-1.jpg');">
-      <span class="price">Software</span>
-    </a>
-    <div class="text p-4">
-      <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-      <p class="advisor">Advisor <span>Tony Garret</span></p>
-      <ul class="d-flex justify-content-between">
-       <li><span class="flaticon-shower"></span>2300</li>
-       <li class="price">$199</li>
-     </ul>
-   </div>
- </div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-2.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-3.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
+                <h2 class="mb-4">{{ $lesson->title }}</h2>
 
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-4.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-5.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-6.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-</div>
-</div>
-</section>
+                {{-- 🎥 Ders Videosu --}}
+                @if($lesson->video_url)
+                    @if(Str::endsWith($lesson->video_url, '.mp4'))
+                        <video class="w-100 mb-4" controls>
+                            <source src="{{ asset('storage/' . $lesson->video_url) }}" type="video/mp4">
+                            Tarayıcınız video oynatmayı desteklemiyor.
+                        </video>
+                    @else
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <iframe class="embed-responsive-item" src="{{ $lesson->video_url }}" allowfullscreen></iframe>
+                        </div>
+                    @endif
+                @endif
 
-<footer class="ftco-footer ftco-no-pt">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-md pt-5">
-        <div class="ftco-footer-widget pt-md-5 mb-4">
-          <h2 class="ftco-heading-2">About</h2>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-          </ul>
+                {{-- 📝 Ders Notları --}}
+                <div class="content mb-4">
+                    {!! $lesson->content ?? '<p>No content available.</p>' !!}
+                </div>
+
+                {{-- 📂 Ek Dosya İndir --}}
+                @if($lesson->attachment)
+                    <div class="mt-3">
+                        <h5>Additional Resources</h5>
+                        <a href="{{ asset('storage/' . $lesson->attachment) }}" class="btn btn-sm btn-success" download>
+                            <i class="fa fa-download"></i> Download Resource
+                        </a>
+                    </div>
+                @endif
+
+                <a href="{{ route('student.course', $lesson->course->id) }}" class="btn btn-outline-primary mt-4">
+                    <i class="fa fa-arrow-left"></i> Back to Course
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="col-md pt-5">
-        <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-          <h2 class="ftco-heading-2">Help Desk</h2>
-          <ul class="list-unstyled">
-            <li><a href="#" class="py-2 d-block">Customer Care</a></li>
-            <li><a href="#" class="py-2 d-block">Legal Help</a></li>
-            <li><a href="#" class="py-2 d-block">Services</a></li>
-            <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-            <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
-            <li><a href="#" class="py-2 d-block">Call Us</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md pt-5">
-       <div class="ftco-footer-widget pt-md-5 mb-4">
-        <h2 class="ftco-heading-2">Recent Courses</h2>
-        <ul class="list-unstyled">
-          <li><a href="#" class="py-2 d-block">Computer Engineering</a></li>
-          <li><a href="#" class="py-2 d-block">Web Design</a></li>
-          <li><a href="#" class="py-2 d-block">Business Studies</a></li>
-          <li><a href="#" class="py-2 d-block">Civil Engineering</a></li>
-          <li><a href="#" class="py-2 d-block">Computer Technician</a></li>
-          <li><a href="#" class="py-2 d-block">Web Developer</a></li>
-        </ul>
-      </div>
     </div>
-    <div class="col-md pt-5">
-      <div class="ftco-footer-widget pt-md-5 mb-4">
-       <h2 class="ftco-heading-2">Have a Questions?</h2>
-       <div class="block-23 mb-3">
-         <ul>
-           <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-           <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-           <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-         </ul>
-       </div>
-     </div>
-   </div>
- </div>
- <div class="row">
-  <div class="col-md-12 text-center">
-
-    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-    </div>
-  </div>
-</div>
-</footer>
-
-
-
-<!-- loader -->
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-
-
-</body>
+</section>
 
 @endsection

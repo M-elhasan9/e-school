@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
-
+use App\Models\Testimonial; 
 class HomeController extends Controller
 {
     // Ana sayfa → courses gönderilmez
-    public function index() {
-        return view('home.index'); // ana sayfa farklı bir view
-    }
+
+
+public function index() {
+    $testimonials = Testimonial::latest()->get(); // yorumları veritabanından al
+    return view('home.index', compact('testimonials')); // Blade'e gönder
+}
+
 
     // Kurs listesi
     public function courses() {

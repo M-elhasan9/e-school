@@ -12,7 +12,7 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
       <li class="breadcrumb-item"><a href="">Users</a></li>
       <li class="breadcrumb-item active" aria-current="page">Edit</li>
     </ul>
@@ -71,7 +71,13 @@
     @endforeach
   </select>
 </div>
-
+ <div class="form-group">
+            <label>User Image</label>
+            <input type="file" name="image" class="form-control">
+            @if($user->image)
+                  <img src="{{ asset('User/' . $user->image) }}" alt="Lesson Image" width="50">
+            @endif
+            </div>
 
           <button type="submit" class="btn btn-gradient-primary mt-3">
             <i class="mdi mdi-content-save"></i> Save Changes

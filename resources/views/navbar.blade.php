@@ -14,7 +14,7 @@
                 <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
                  <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link">Logout</a></li>
-                
+
 
                 {{-- Giriş yapmamış kullanıcılar için linkler --}}
                 @guest
@@ -23,14 +23,7 @@
                 @endguest
 
                 {{-- Giriş yapmış kullanıcılar için logout --}}
-                @auth
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit" class="nav-link btn btn-link" style="display:inline; padding:0; border:none;">Logout</button>
-                        </form>
-                    </li>
-                @endauth
+                
             </ul>
         </div>
     </div>

@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory; // ← ekle
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
-    use HasFactory; // ← ekle
+    use HasFactory;
 
-    protected $fillable = ['title','content','course_id','order'];
+    protected $fillable = [
+        'title',
+        'content',
+        'course_id',
+        'order',
+        'video_url',    // eklendi
+        'attachment'    // eklendi
+    ];
 
     public function course()
     {

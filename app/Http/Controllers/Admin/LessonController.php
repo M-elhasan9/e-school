@@ -31,11 +31,18 @@ class LessonController extends Controller
          $data->duration = $request->duration;
          $data->status = $request->status;
          $image=$request->image;
+         $data->video_url = $request->video_url;
          if($image){
             $imagename=time().'.'.$image->getClientOriginalExtension();
             $request->image->move('Lesson',$imagename);
             $data->image=$imagename;
          }
+         // Attachment
+if ($request->hasFile('attachment')) {
+    $filename = time() . '.' . $request->attachment->getClientOriginalExtension();
+    $request->attachment->storeAs('attachments', $filename, 'public');
+    $data->attachment = 'attachments/' . $filename;
+}
          $data->save();
         return redirect()->route('lessons.index')->with('success', 'Lesson created successfully.');
     }
@@ -58,11 +65,18 @@ class LessonController extends Controller
          $data->duration = $request->duration;
          $data->status = $request->status;
          $image=$request->image;
+         $data->video_url = $request->video_url;
          if($image){
             $imagename=time().'.'.$image->getClientOriginalExtension();
             $request->image->move('Lesson',$imagename);
             $data->image=$imagename;
          }
+         // Attachment
+if ($request->hasFile('attachment')) {
+    $filename = time() . '.' . $request->attachment->getClientOriginalExtension();
+    $request->attachment->storeAs('attachments', $filename, 'public');
+    $data->attachment = 'attachments/' . $filename;
+}
          $data->save();
         return redirect()->route('lessons.index')->with('success', 'Lesson updated successfully.');
     }

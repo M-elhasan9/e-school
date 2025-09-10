@@ -12,7 +12,7 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
       <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
       <li class="breadcrumb-item active" aria-current="page">Add New</li>
     </ul>
@@ -63,6 +63,11 @@
               @endforeach
             </select>
           </div>
+              <div class="form-group">
+            <label>Lesson Image</label>
+            <input type="file" name="image" class="form-control-file">
+          </div>
+
           <button type="submit" class="btn btn-gradient-primary mt-3">
             <i class="mdi mdi-account-plus">Add User</i>
           </button>

@@ -12,7 +12,7 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
       <li class="breadcrumb-item"><a href="">Lessons</a></li>
       <li class="breadcrumb-item active" aria-current="page">Edit</li>
     </ul>
@@ -69,6 +69,23 @@
               <option >Inactive</option>
             </select>
           </div>
+          <div class="form-group">
+    <label>Video URL</label>
+    <input type="text" name="video_url" class="form-control" value="{{ $lesson->video_url }}" placeholder="Enter video URL (YouTube or mp4)">
+</div>
+
+<div class="form-group">
+    <label>Attachment (PDF, DOCX, etc.)</label>
+    <input type="file" name="attachment" class="form-control">
+    @if($lesson->attachment)
+        <p class="mt-2">
+            <a href="{{ asset('storage/' . $lesson->attachment) }}" target="_blank" class="btn btn-sm btn-info">
+                <i class="mdi mdi-file"></i> View Current Attachment
+            </a>
+        </p>
+    @endif
+</div>
+
            <div class="form-group">
             <label>Lesson Image</label>
             <input type="file" name="image" class="form-control">

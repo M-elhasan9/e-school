@@ -42,141 +42,182 @@
                   <i class="mdi mdi-home"></i>
                 </span> Dashboard
               </h3>
-              <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div class="row">
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-danger card-img-holder text-white">
-                  <div class="card-body">
-                    <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Weekly Sales <i class="mdi mdi-chart-line mdi-24px float-end"></i>
-                    </h4>
-                    <h2 class="mb-5">$ 15,0000</h2>
-                    <h6 class="card-text">Increased by 60%</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-info card-img-holder text-white">
-                  <div class="card-body">
-                    <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Weekly Orders <i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
-                    </h4>
-                    <h2 class="mb-5">45,6334</h2>
-                    <h6 class="card-text">Decreased by 10%</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-success card-img-holder text-white">
-                  <div class="card-body">
-                    <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Visitors Online <i class="mdi mdi-diamond mdi-24px float-end"></i>
-                    </h4>
-                    <h2 class="mb-5">95,5741</h2>
-                    <h6 class="card-text">Increased by 5%</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-7 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="clearfix">
-                      <h4 class="card-title float-start">Visit And Sales Statistics</h4>
-                      <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-end"></div>
-                    </div>
-                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Traffic Sources</h4>
-                    <div class="doughnutjs-wrapper d-flex justify-content-center">
-                      <canvas id="traffic-chart"></canvas>
-                    </div>
-                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Recent Tickets</h4>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th> Assignee </th>
-                            <th> Subject </th>
-                            <th> Status </th>
-                            <th> Last Update </th>
-                            <th> Tracking ID </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face1.jpg') }}" class="me-2" alt="image"> David Grey
-                            </td>
-                            <td> Fund is not recieved </td>
-                            <td>
-                              <label class="badge badge-gradient-success">DONE</label>
-                            </td>
-                            <td> Dec 5, 2017 </td>
-                            <td> WD-12345 </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face2.jpg') }}" class="me-2" alt="image"> Stella Johnson
-                            </td>
-                            <td> High loading time </td>
-                            <td>
-                              <label class="badge badge-gradient-warning">PROGRESS</label>
-                            </td>
-                            <td> Dec 12, 2017 </td>
-                            <td> WD-12346 </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face3.jpg') }}" class="me-2" alt="image"> Marina Michel
-                            </td>
-                            <td> Website down for one week </td>
-                            <td>
-                              <label class="badge badge-gradient-info">ON HOLD</label>
-                            </td>
-                            <td> Dec 16, 2017 </td>
-                            <td> WD-12347 </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="{{ asset('assets/images/faces/face4.jpg') }}" class="me-2" alt="image"> John Doe
-                            </td>
-                            <td> Loosing control on server </td>
-                            <td>
-                              <label class="badge badge-gradient-danger">REJECTED</label>
-                            </td>
-                            <td> Dec 3, 2017 </td>
-                            <td> WD-12348 </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+             <nav aria-label="breadcrumb">
+  <ul class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">
+      <span></span>Dashboard <i class="mdi mdi-school icon-sm text-primary align-middle"></i>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class="row">
+ <!-- Students -->
+<div class="col-md-4 stretch-card grid-margin">
+  <div class="card bg-gradient-primary card-img-holder text-white">
+    <div class="card-body">
+      <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
+      <h4 class="font-weight-normal mb-3">Total Students <i class="mdi mdi-account-group mdi-24px float-end"></i></h4>
+      <h2 class="mb-5">{{ $totalStudents }}</h2>
+      <h6 class="card-text">Increased by 12% this month</h6>
+    </div>
+  </div>
+</div>
+
+<!-- Courses -->
+<div class="col-md-4 stretch-card grid-margin">
+  <div class="card bg-gradient-info card-img-holder text-white">
+    <div class="card-body">
+      <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
+      <h4 class="font-weight-normal mb-3">Active Courses <i class="mdi mdi-book-open-page-variant mdi-24px float-end"></i></h4>
+      <h2 class="mb-5">{{ $totalCourses }}</h2>
+      <h6 class="card-text">5 new courses added this week</h6>
+    </div>
+  </div>
+</div>
+
+<!-- Teachers -->
+<div class="col-md-4 stretch-card grid-margin">
+  <div class="card bg-gradient-success card-img-holder text-white">
+    <div class="card-body">
+      <img src="{{ asset('assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
+      <h4 class="font-weight-normal mb-3">Teachers <i class="mdi mdi-teach mdi-24px float-end"></i></h4>
+      <h2 class="mb-5">{{ $totalTeachers }}</h2>
+      <h6 class="card-text">90% currently active</h6>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+<!-- Course Enrollment Statistics -->
+<div class="col-md-7 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="clearfix">
+        <h4 class="card-title float-start">Course Enrollment Statistics</h4>
+        <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-end"></div>
+      </div>
+      <canvas id="visit-sale-chart" class="mt-4"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- User Login Sources -->
+<div class="col-md-5 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">User Login Sources</h4>
+      <div class="doughnutjs-wrapper d-flex justify-content-center">
+        <canvas id="traffic-chart"></canvas>
+      </div>
+      <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Course Enrollment Chart (Bar)
+  var ctx1 = document.getElementById('visit-sale-chart').getContext('2d');
+  var visitSaleChart = new Chart(ctx1, {
+      type: 'bar',
+      data: {
+          labels: @json($chartLabels),
+          datasets: [
+              {
+                  label: 'Students',
+                  data: @json($studentData),
+                  backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1
+              },
+              {
+                  label: 'Teachers',
+                  data: @json($teacherData),
+                  backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1
+              }
+          ]
+      },
+      options: {
+          responsive: true,
+          scales: {
+              y: { beginAtZero: true }
+          },
+          plugins: {
+              legend: { position: 'top' }
+          }
+      }
+  });
+
+  // User Login Sources Chart (Doughnut)
+  var ctx2 = document.getElementById('traffic-chart').getContext('2d');
+var loginData = @json($loginData);      // Örn: [50, 30]
+var loginLabels = @json($loginLabels);  // Örn: ['Students','Teachers']
+
+var total = loginData.reduce((a,b) => a + b, 0);
+
+var trafficChart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        labels: loginLabels,
+        datasets: [{
+            data: loginData,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    generateLabels: function(chart) {
+                        return chart.data.labels.map(function(label, i) {
+                            let value = chart.data.datasets[0].data[i];
+                            let percent = ((value / total) * 100).toFixed(1);
+                            return {
+                                text: label + ' (' + percent + '%)',
+                                fillStyle: chart.data.datasets[0].backgroundColor[i],
+                                strokeStyle: chart.data.datasets[0].borderColor[i],
+                                lineWidth: 1,
+                                hidden: false,
+                                index: i
+                            };
+                        });
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        let value = context.raw;
+                        let percent = ((value / total) * 100).toFixed(1);
+                        return context.label + ': ' + value + ' (' + percent + '%)';
+                    }
+                }
+            }
+        }
+    }
+});
+
+</script>
+
+
+
+
+</div>
+
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->

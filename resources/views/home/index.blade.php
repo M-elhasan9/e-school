@@ -1,5 +1,32 @@
 @extends('layouts.app')
+<style>
+.testimonial-form input,
+.testimonial-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
 
+.testimonial-form button {
+  background: #6c63ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+.user-img {
+    width: 60px;           /* resim genişliği */
+    height: 60px;          /* resim yüksekliği */
+    border-radius: 50%;    /* dairesel yapar */
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;        /* küçükleşmesini engeller */
+}
+
+
+</style>
 @section('title', 'Home Page')
 @section('content')
 <body>
@@ -77,7 +104,7 @@
   </a>
 </div>
 <div class="col-md-12 text-center mt-5">
-    <a href="#" class="btn btn-secondary">See All Courses</a>
+    <a href="{{route('courses')}}" class="btn btn-secondary">See All Courses</a>
 </div>
 </div>
 </div>
@@ -264,127 +291,57 @@
 <section class="ftco-section testimony-section bg-light">
    <div class="overlay" style="background-image: url('{{ asset('images/bg_2.jpg')}}');"></div>
    <div class="container">
-    <div class="row pb-4">
-      <div class="col-md-7 heading-section ftco-animate">
-         <span class="subheading">Testimonial</span>
-         <h2 class="mb-4">What Are Students Says</h2>
-     </div>
- </div>
-</div>
-<div class="container container-2">
-    <div class="row ftco-animate">
-      <div class="col-md-12">
-        <div class="carousel-testimony owl-carousel">
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div class="text">
-                 <p class="star">
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </p>
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                <div class="d-flex align-items-center">
-                   <div class="user-img" style="background-image: url('{{ asset('images/person_1.jpg')}}')"></div>
-                   <div class="pl-3">
-                      <p class="name">Roger Scott</p>
-                      <span class="position">Marketing Manager</span>
-                  </div>
-              </div>
-          </div>
+      <div class="row pb-4">
+         <div class="col-md-7 heading-section ftco-animate">
+            <span class="subheading">Testimonial</span>
+            <h2 class="mb-4">What Students Say</h2>
+         </div>
       </div>
-  </div>
-  <div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_2.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
+   </div>
+
+   <div class="container container-2">
+      <div class="row ftco-animate">
+         <div class="col-md-12">
+            @if($testimonials->count() > 2)
+                <div class="carousel-testimony owl-carousel">
+                    @foreach($testimonials as $testimonial)
+                        <div class="item">
+                            @include('home.partials.testimonial-card', ['testimonial' => $testimonial])
+
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="row">
+                    @foreach($testimonials as $testimonial)
+                        <div class="col-md-4">
+                            @include('home.partials.testimonial-card', ['testimonial' => $testimonial])
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+         </div>
       </div>
-  </div>
-</div>
-</div>
-<div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_3.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
-      </div>
-  </div>
-</div>
-</div>
-<div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_1.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
-      </div>
-  </div>
-</div>
-</div>
-<div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_2.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
-      </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+   </div>
+
+   {{-- Optional: Add the form for new testimonial --}}
+   <div class="testimonial-form mt-5" style="margin:10px;">
+      <h3>Leave a Testimonial</h3>
+      <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
+         @csrf
+         <input type="text" name="student_name" placeholder="Your Name" required>
+         <input type="text" name="position" placeholder="Position / Department">
+         <textarea name="comment" placeholder="Your Comment" required></textarea>
+         <input type="number" name="stars" min="1" max="5" value="5">
+         <input type="file" name="image">
+         <button type="submit">Submit</button>
+      </form>
+   </div>
 </section>
+
+
+
+
 
 <section class="ftco-intro ftco-section ftco-no-pb">
  <div class="container">
@@ -601,8 +558,27 @@
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+<!-- Owl Carousel JS zaten yüklenmiş olmalı -->
 
 
 </body>
+@push('scripts')
+<script>
+$(document).ready(function(){
+    // Sadece bir kez çalıştır
+    if($('.carousel-testimony').length > 0){
+        $('.carousel-testimony').owlCarousel({
+            loop: true,
+            margin: 30,
+            nav: true,
+            items: 1,
+            autoplay: false,
+            dots: true,
+        });
+    }
+});
+
+</script>
+@endpush
 </html>
 @endsection

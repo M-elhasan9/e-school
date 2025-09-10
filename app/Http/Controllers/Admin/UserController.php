@@ -26,38 +26,37 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->is_teacher = $request->is_teacher ?? 0;
-        $user->password = bcrypt(Str::random(10));
-        $user->save();
+{
+    $user = new User();
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->is_teacher = $request->is_teacher ?? 0;
+    $user->password = bcrypt(Str::random(10));
+$image=$request->image;
+         if($image){
+            $imagename=time().'.'.$image->getClientOriginalExtension();
+            $request->image->move('User',$imagename);
+            $user->image=$imagename;
+         }
+$user->save();
 
-        // Courses ekleme
-        if ($request->course_ids) {
-            if ($user->is_teacher) {
-                $syncData = [];
-                foreach ($request->course_ids as $courseId) {
-                    $syncData[$courseId] = ['is_teacher' => 1];
-                }
-                $user->courses()->sync($syncData);
-            } else {
-                $syncData = [];
-                foreach ($request->course_ids as $courseId) {
-                    $syncData[$courseId] = ['is_teacher' => 0];
-                }
-                $user->courses()->sync($syncData);
-            }
+    // Courses ekleme
+    if ($request->course_ids) {
+        $syncData = [];
+        foreach ($request->course_ids as $courseId) {
+            $syncData[$courseId] = ['is_teacher' => $user->is_teacher ? 1 : 0];
         }
-
-        // Lessons ekleme
-        if ($request->lesson_ids) {
-            $user->lessons()->sync($request->lesson_ids);
-        }
-
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+        $user->courses()->sync($syncData);
     }
+
+    // Lessons ekleme
+    if ($request->lesson_ids) {
+        $user->lessons()->sync($request->lesson_ids);
+    }
+
+    return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+}
+
 
     public function edit($id)
     {
@@ -68,42 +67,41 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'courses', 'lessons'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->is_teacher = $request->is_teacher;
-        $user->save();
+public function update(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->is_teacher = $request->is_teacher;
+    $image=$request->image;
+         if($image){
+            $imagename=time().'.'.$image->getClientOriginalExtension();
+            $request->image->move('User',$imagename);
+            $user->image=$imagename;
+         }
 
-        // Courses güncelleme
-        if ($request->has('course_ids')) {
-            if ($user->is_teacher) {
-                $syncData = [];
-                foreach ($request->course_ids as $courseId) {
-                    $syncData[$courseId] = ['is_teacher' => 1];
-                }
-                $user->courses()->sync($syncData);
-            } else {
-                $syncData = [];
-                foreach ($request->course_ids as $courseId) {
-                    $syncData[$courseId] = ['is_teacher' => 0];
-                }
-                $user->courses()->sync($syncData);
-            }
-        } else {
-            $user->courses()->sync([]);
+    $user->save();
+
+    // Courses güncelleme
+    if ($request->has('course_ids')) {
+        $syncData = [];
+        foreach ($request->course_ids as $courseId) {
+            $syncData[$courseId] = ['is_teacher' => $user->is_teacher ? 1 : 0];
         }
-
-        // Lessons güncelleme
-        if ($request->has('lesson_ids')) {
-            $user->lessons()->sync($request->lesson_ids);
-        } else {
-            $user->lessons()->sync([]);
-        }
-
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+        $user->courses()->sync($syncData);
+    } else {
+        $user->courses()->sync([]);
     }
+
+    // Lessons güncelleme
+    if ($request->has('lesson_ids')) {
+        $user->lessons()->sync($request->lesson_ids);
+    } else {
+        $user->lessons()->sync([]);
+    }
+
+    return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+}
 
     public function destroy($id)
     {
