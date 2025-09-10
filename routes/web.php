@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\MessageController;
 // Admin Controller importları
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
@@ -31,12 +33,16 @@ Route::get('/instructors', [HomeController::class, 'instructors'])->name('instru
 Route::get('/instructors/{user}', [HomeController::class, 'showInstructor'])
      ->name('instructors.show');
 
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 // Student sayfaları (sadece auth ile korunan)
 Route::middleware(['auth'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
     Route::get('/student/courses/{id}', [StudentController::class, 'viewCourse'])->name('student.course');
     Route::get('/student/lessons/{id}', [StudentController::class, 'viewLesson'])->name('student.lesson');
 });
+Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
+
 
 
 // Admin sayfaları (sadece auth ile korunan)

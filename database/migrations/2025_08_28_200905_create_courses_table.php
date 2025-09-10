@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('duration')->nullable();
             $table->decimal('price', 8, 2)->nullable();
             $table->string('status')->nullable(); // ör: active, draft
+            $table->boolean('is_featured')->default(false);
+             $table->integer('enrolled_students')->default(0); // varsayılan 0
 
         });
     }

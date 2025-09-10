@@ -9,7 +9,12 @@ class HomeController extends Controller
 {
     // Ana sayfa → courses gönderilmez
     public function index() {
-        return view('home.index'); // ana sayfa farklı bir view
+         $featuredCourses = Course::with('teacher')
+                             ->where('is_featured', true)
+                             ->latest()
+                             ->take(6)
+                             ->get();
+        return view('home.index', compact('featuredCourses'));
     }
 
     // Kurs listesi
