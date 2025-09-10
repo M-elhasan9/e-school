@@ -16,6 +16,7 @@ Route::get('/logout', function () {
     return redirect('/'); // Çıkış yaptıktan sonra ana sayfaya yönlendir
 })->name('logout');
 
+
 // Ana sayfa
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
