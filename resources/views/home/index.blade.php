@@ -392,69 +392,39 @@
 <section class="ftco-section bg-light">
   <div class="container">
      <div class="row justify-content-center pb-4">
-      <div class="col-md-12 heading-section text-center ftco-animate">
-         <span class="subheading">Our Blog</span>
-         <h2 class="mb-4">Recent Post</h2>
+        <div class="col-md-12 heading-section text-center ftco-animate">
+           <span class="subheading">Our Blog</span>
+           <h2 class="mb-4">Recent Posts</h2>
+        </div>
      </div>
- </div>
- <div class="row d-flex">
-  <div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_1.jpg') }}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
+     <div class="row d-flex">
+        @foreach($recentPosts as $post)
+          <div class="col-lg-4 ftco-animate">
+            <div class="blog-entry">
+              @if($post->image)
+    <a href="#" class="block-20" style="background-image: url('{{ asset($post->image) }}');"></a>
+@endif
+              <div class="text d-block">
+                 <div class="meta">
+                    <p>
+                       <a href="#"><span class="fa fa-calendar mr-2"></span>{{ $post->published_at ? $post->published_at->format('M d, Y') : '' }}</a>
+                       <a href="#"><span class="fa fa-user mr-2"></span>{{ $post->author }}</a>
+                    </p>
+                 </div>
+                 <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
+                 <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
+                 
+              </div>
+            </div>
+          </div>
+        @endforeach
      </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
-
-<div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_2.jpg') }}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
+     <div class="row mt-4">
+        <div class="col text-center">
+            <a href="{{ route('blog.index') }}" class="btn btn-primary">See All Blog Posts</a>
+        </div>
      </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
-<div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_3.jpg') }}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
-     </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
-</div>
-</div>
+  </div>
 </section>
 
 

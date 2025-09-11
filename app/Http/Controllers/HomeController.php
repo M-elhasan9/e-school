@@ -1,29 +1,33 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Course;
-use App\Models\Testimonial;
+use App\Models\Testimonial; // senin
+use App\Models\Post;        // arkadaşının
 
 class HomeController extends Controller
 {
     // Ana sayfa
     public function index()
     {
-        // Öne çıkan kurslar
+        // Öne çıkan kurslar (senin)
         $featuredCourses = Course::with('teacher')
                                 ->where('is_featured', true)
                                 ->latest()
                                 ->take(6)
                                 ->get();
 
-        // Yorumlar
+        // Yorumlar (senin)
         $testimonials = Testimonial::latest()->get();
 
-        return view('home.index', compact('featuredCourses', 'testimonials'));
+        // Son paylaşımlar (arkadaşının)
+        $recentPosts = Post::latest()->take(3)->get();
+
+        // Tüm verileri view'e gönder
+        return view('home.index', compact('featuredCourses', 'testimonials', 'recentPosts'));
     }
 
     // Kurs listesi
