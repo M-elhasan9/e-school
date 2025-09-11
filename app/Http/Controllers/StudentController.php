@@ -22,11 +22,11 @@ class StudentController extends Controller
         return view('student.course', compact('course'));
     }
 
-    // Ders görüntüleme
-   public function viewLesson($id)
-    {
-        $lesson = Lesson::with('course')->findOrFail($id);
-        return view('student.lesson', compact('lesson'));
-    }
+public function viewLesson($id)
+{
+    $lesson = Lesson::with('course')->findOrFail($id);
+    return view('student.lesson', compact('lesson'));
+}
+
 }
 

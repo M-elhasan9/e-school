@@ -34,9 +34,7 @@ Route::post('/testimonial/store', [TestimonialController::class, 'store'])->name
 Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
 
 // İkinizin farklı parametre yazımı → ikisini de tuttum
-Route::get('/courses/{id}', [HomeController::class, 'showCourse'])->name('courses.show.byId');
 Route::get('/courses/{course}', [HomeController::class, 'showCourse'])->name('courses.show');
-
 // Detay sayfası
 Route::get('/details', [HomeController::class, 'details'])->name('details');
 
@@ -51,7 +49,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::middleware(['auth'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
     Route::get('/student/courses/{id}', [StudentController::class, 'viewCourse'])->name('student.course');
-    Route::get('/student/lessons/{id}', [StudentController::class, 'viewLesson'])->name('student.lesson');
+Route::get('/student/lessons/{lesson}', [StudentController::class, 'viewLesson'])->name('student.lesson');
 });
 
 // Admin Messages (arkadaşının eklediği)
@@ -63,9 +61,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Projects
-    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-    Route::get('/projects/search', [ProjectController::class, 'search'])->name('projects.search'); // search eklendi
+
 
     // Courses CRUD
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');

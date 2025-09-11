@@ -24,25 +24,32 @@
             <!-- Course Details -->
             <div class="col-lg-8 ftco-animate">
                 <div class="course-detail">
-                    <img src="{{ $course->image ? asset('Course/'.$course->image) : asset('images/default-course.jpg') }}" class="img-fluid mb-4">
+                    {{-- Resim --}}
+<img src="/Course/{{$course->image}}">
+                    {{-- Başlık ve açıklama --}}
                     <h2>{{ $course->title }}</h2>
                     <p>{{ $course->description }}</p>
 
+                    {{-- Kurs bilgileri --}}
                     <ul class="list-unstyled">
-                        <li><strong>Category:</strong> {{ $course->category }}</li>
-                        <li><strong>Instructor:</strong> {{ $course->instructor }}</li>
+                        <li><strong>Instructor:</strong> {{ $course->teacher->name ?? 'N/A' }}</li>
                         <li><strong>Price:</strong> ${{ $course->price }}</li>
-                        <li><strong>Students Enrolled:</strong> {{ $course->students_count }}</li>
+                        <li><strong>Students Enrolled:</strong> {{ $course->enrolled_students }}</li>
                     </ul>
 
+                    {{-- Dersler --}}
                     <h3 class="mt-4">Lessons</h3>
-                    <ul class="list-group">
-                        @foreach($course->lessons as $lesson)
-                            <li class="list-group-item">
-                                <a href="{{ route('student.lesson', $lesson->id) }}">{{ $lesson->title }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
+                    @if($course->lessons->count() > 0)
+                        <ul class="list-group">
+                            @foreach($course->lessons as $lesson)
+                                <li class="list-group-item">
+<a href="{{ route('student.lesson', $lesson->id) }}">{{ $lesson->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p>No lessons added yet.</p>
+                    @endif
                 </div>
             </div>
 
@@ -52,8 +59,9 @@
                     <h3 class="heading-sidebar">Course Info</h3>
                     <ul class="list-unstyled">
                         <li><strong>Duration:</strong> {{ $course->duration ?? 'N/A' }}</li>
-                        <li><strong>Level:</strong> {{ $course->level ?? 'N/A' }}</li>
-                        <li><strong>Language:</strong> {{ $course->language ?? 'English' }}</li>
+                        <li><strong>Price:</strong> ${{ $course->price }}</li>
+                        <li><strong>Status:</strong> {{ ucfirst($course->status) }}</li>
+                        <li><strong>Featured:</strong> {{ $course->is_featured ? 'Yes' : 'No' }}</li>
                     </ul>
                 </div>
             </div>

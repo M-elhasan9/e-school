@@ -315,7 +315,7 @@
     @endguest
 
     @auth
-        <a href="{{ route('courses', $course->id) }}" class="btn btn-primary px-4 py-3">
+        <a href="{{ route('courses') }}" class="btn btn-primary px-4 py-3">
             Go to Course
         </a>
     @endauth
