@@ -69,6 +69,11 @@
               <option >Inactive</option>
             </select>
           </div>
+          <div class="form-group form-check">
+  <input type="checkbox" class="form-check-input" id="is_featured" name="is_featured" value="1"
+         {{ old('is_featured', $course->is_featured ?? false) ? 'checked' : '' }}>
+  <label class="form-check-label" for="is_featured">Feature on Home</label>
+</div>
            <div class="form-group">
             <label>Course Image</label>
             <input type="file" name="image" class="form-control">

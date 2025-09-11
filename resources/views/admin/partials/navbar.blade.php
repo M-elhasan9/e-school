@@ -84,10 +84,11 @@ $(document).ready(function() {
               </a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="mdi mdi-email-outline"></i>
-                <span class="count-symbol bg-warning"></span>
-              </a>
+             <a class="nav-link count-indicator" href="{{ route('admin.messages.index') }}">
+    <i class="mdi mdi-email-outline"></i>
+    <span class="count-symbol bg-warning"></span>
+</a>
+
               <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list" aria-labelledby="messageDropdown">
                 <h6 class="p-3 mb-0">Messages</h6>
                 <div class="dropdown-divider"></div>

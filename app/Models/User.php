@@ -50,18 +50,19 @@ class User extends Authenticatable
     // Öğretmen olarak verdiği dersler
 public function teachingCourses()
 {
-    return $this->belongsToMany(Course::class, 'enrollments') // pivot tabloyu belirt
+    return $this->belongsToMany(Course::class, 'enrollments')
                 ->withTimestamps()
+                ->withPivot('is_teacher')
                 ->wherePivot('is_teacher', true);
 }
 
-// Öğrenci olarak aldığı dersler
 public function learningCourses()
 {
-    return $this->belongsToMany(Course::class, 'enrollments') // pivot tabloyu belirt
+    return $this->belongsToMany(Course::class, 'enrollments')
                 ->withTimestamps()
                 ->wherePivot('is_teacher', false);
 }
+
 
 
     // Kullanıcının dersleri (lesson_user pivot tablosu ile)

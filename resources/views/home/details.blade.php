@@ -2,10 +2,7 @@
 @section('title',' details ')
 @section('content')
 
-<!DOCTYPE html>
-<html lang="en">
 
-<body>
 
  <!-- END nav -->
 

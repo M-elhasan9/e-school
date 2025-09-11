@@ -5,6 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 
+// Arkadaşının ekledikleri
+use App\Models\User;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\MessageController;
+
 // Admin Controller importları
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
@@ -16,26 +21,43 @@ use App\Http\Controllers\TestimonialController;
 // Logout
 Route::get('/logout', function () {
     Auth::logout();
-    return redirect('/');
+    return redirect('/'); // Çıkış yaptıktan sonra ana sayfaya yönlendir
 })->name('logout');
 
 // Ana sayfa
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Testimonial store (senin eklediğin)
 Route::post('/testimonial/store', [TestimonialController::class, 'store'])->name('testimonial.store');
 
 // Genel sayfalar
 Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
-Route::get('/courses/{id}', [HomeController::class, 'showCourse'])->name('courses.show');
+
+// İkinizin farklı parametre yazımı → ikisini de tuttum
+Route::get('/courses/{id}', [HomeController::class, 'showCourse'])->name('courses.show.byId');
+Route::get('/courses/{course}', [HomeController::class, 'showCourse'])->name('courses.show');
+
+// Detay sayfası
 Route::get('/details', [HomeController::class, 'details'])->name('details');
 
-// Student sayfaları
+// Instructors (arkadaşının eklediği)
+Route::get('/instructors', [HomeController::class, 'instructors'])->name('instructors');
+Route::get('/instructors/{user}', [HomeController::class, 'showInstructor'])->name('instructors.show');
+
+// Contact (arkadaşının eklediği)
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+// Student sayfaları (auth ile korunan)
 Route::middleware(['auth'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
     Route::get('/student/courses/{id}', [StudentController::class, 'viewCourse'])->name('student.course');
     Route::get('/student/lessons/{id}', [StudentController::class, 'viewLesson'])->name('student.lesson');
 });
 
-// Admin sayfaları
+// Admin Messages (arkadaşının eklediği)
+Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
+
+// Admin sayfaları (auth ile korunan)
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // Dashboard
@@ -43,7 +65,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // Projects
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-    Route::get('/projects/search', [ProjectController::class, 'search'])->name('projects.search'); // <-- search eklendi
+    Route::get('/projects/search', [ProjectController::class, 'search'])->name('projects.search'); // search eklendi
 
     // Courses CRUD
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
@@ -70,6 +92,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
-// Ekstra auth ve settings dosyaları
+// Ekstra auth ve settings
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

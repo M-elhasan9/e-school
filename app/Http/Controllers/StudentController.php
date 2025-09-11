@@ -23,8 +23,9 @@ class StudentController extends Controller
     }
 
     // Ders görüntüleme
-    public function viewLesson($id) {
-        $lesson = Lesson::findOrFail($id);
+   public function viewLesson($id)
+    {
+        $lesson = Lesson::with('course')->findOrFail($id);
         return view('student.lesson', compact('lesson'));
     }
 }

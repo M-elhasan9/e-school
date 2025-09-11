@@ -3,9 +3,7 @@
 
 @section('content')
 <!DOCTYPE html>
-<html lang="en">
 
-<body>
 
 	<!-- END nav -->
 
@@ -84,25 +82,32 @@
     <div class="row">
         @foreach($courses as $course)
             <div class="col-md-6 d-flex align-items-stretch ftco-animate">
-                <div class="project-wrap">
-                    <a href="{{ route('courses.show', $course->id) }}" class="img" style="background-image: url('{{ asset($course->image) }}');">
-                        <span class="price">{{ $course->category }}</span>
-                    </a>
-                    <div class="text p-4">
-                        <h3><a href="{{ route('courses.show', $course->id) }}">{{ $course->title }}</a></h3>
-                        <p class="advisor">Advisor <span>{{ $course->instructor }}</span></p>
-                        <ul class="d-flex justify-content-between">
-                            <li><span class="flaticon-shower"></span>{{ $course->students_count }}</li>
-                            <li class="price">${{ $course->price }}</li>
-                        </ul>
-                    </div>
+              <div class="project-wrap">
+                <a href="{{ route('courses.show', $course->id) }}" class="img"
+                   style="background-image: url('{{ $course->image ? asset('Course/'.$course->image) : asset('images/default-course.jpg') }}');">
+                  <span class="price">{{ $course->status ?? '—' }}</span>
+                </a>
+                <div class="text p-4">
+                  <h3><a href="{{ route('courses.show', $course->id) }}">{{ $course->title }}</a></h3>
+                  <p class="advisor">Advisor <span>{{ $course->teacher?->name ?? 'No Teacher' }}</span></p>
+                  <ul class="d-flex justify-content-between">
+                    <li><span class="flaticon-shower"></span>{{ $course->enrolled_students ?? 0 }}</li>
+                    <li class="price">${{ $course->price ?? 0 }}</li>
+                  </ul>
                 </div>
+              </div>
             </div>
-        @endforeach
+          @endforeach
+		  <!-- Pagination -->
+<div class="mt-4">
+    {{ $courses->onEachSide(1)->links('pagination::bootstrap-4') }}
+</div>
+
     </div>
 </div>
 
 			</div>
+		
 		</section>
 
 		<footer class="ftco-footer ftco-no-pt">
@@ -158,6 +163,7 @@
 						</div>
 					</div>
 				</div>
+			
 				<div class="row">
 					<div class="col-md-12 text-center">
 
@@ -178,7 +184,6 @@
 
 
 
-		</body>
-		</html>
+	
 
 @endsection
