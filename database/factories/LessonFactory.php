@@ -20,12 +20,22 @@ class LessonFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+         return [
             'title' => $this->faker->sentence(6),
             'content' => $this->faker->paragraph(5),
-            // Eğer course_id verilmemişse rastgele bir kurs ile bağla
             'course_id' => Course::inRandomOrder()->first()?->id ?? Course::factory(),
             'order' => $this->faker->numberBetween(1, 10),
+            'video_url' => $this->faker->boolean(70)
+                ? 'https://www.youtube.com/watch?v=' . $this->faker->regexify('[A-Za-z0-9]{11}')
+                : null,
+            'attachment' => $this->faker->boolean(50)
+                ? 'attachments/file-' .rand(1, 2).'.pdf'
+                : null,
+            'image' => $this->faker->boolean(80)
+                ? 'Lesson/work-' .rand(1, 9).'.jpg'
+                : null,
+            'duration' => $this->faker->numberBetween(5, 120), // dakika
+            'status' => $this->faker->randomElement(['active', 'inactive']),
         ];
     }
 }

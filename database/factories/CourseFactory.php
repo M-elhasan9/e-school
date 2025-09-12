@@ -16,9 +16,17 @@ class CourseFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'title' => $this->faker->sentence(3), // Random 3-word title
-            'description' => $this->faker->paragraph(3), // Random paragraph
+         return [
+            'title' => $this->faker->sentence(4), // 4 kelimelik başlık
+            'description' => $this->faker->paragraph(4),
+            'image' => 'Course/work_'.rand(1,9).'.jpg',
+            'duration' => $this->faker->randomElement([
+                '2 weeks', '1 month', '3 months', '6 weeks'
+            ]),
+            'price' => $this->faker->randomFloat(2, 0, 200), // 0.00 - 200.00
+            'status' => $this->faker->randomElement(['active', 'draft', 'archived']),
+            'is_featured' => $this->faker->boolean(20), // %20 featured
+            'enrolled_students' => $this->faker->numberBetween(0, 100),
         ];
     }
 }

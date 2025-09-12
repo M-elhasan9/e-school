@@ -351,7 +351,7 @@
                  </div>
                  <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
                  <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
-                 
+
               </div>
             </div>
           </div>
@@ -409,7 +409,7 @@
 </div>
 </div>
 <div class="row">
-  
+
 </div>
 </div>
 </footer>
