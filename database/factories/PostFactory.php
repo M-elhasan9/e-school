@@ -21,6 +21,7 @@ class PostFactory extends Factory
         'content' => $this->faker->paragraph(5),
         'image' => 'images/image_'.rand(1,6).'.jpg',
     'author' => $this->faker->name,
+    'published_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'), // rastgele tarih
     'updated_at' => now(),
     ];
