@@ -12,23 +12,39 @@ class HomeController extends Controller
 {
     // Ana sayfa
     public function index()
-    {
-        // Öne çıkan kurslar (senin)
-        $featuredCourses = Course::with('teacher')
-                                ->where('is_featured', true)
-                                ->latest()
-                                ->take(6)
-                                ->get();
+{
+    // Öne çıkan kurslar
+    $featuredCourses = Course::with('teacher')
+                            ->where('is_featured', true)
+                            ->latest()
+                            ->take(6)
+                            ->get();
 
-        // Yorumlar (senin)
-        $testimonials = Testimonial::latest()->get();
+    // Yorumlar
+    $testimonials = Testimonial::latest()->get();
 
-        // Son paylaşımlar (arkadaşının)
-        $recentPosts = Post::latest()->take(3)->get();
+    // Son paylaşımlar
+    $recentPosts = Post::latest()->take(3)->get();
 
-        // Tüm verileri view'e gönder
-        return view('home.index', compact('featuredCourses', 'testimonials', 'recentPosts'));
-    }
+    // İstatistikler
+    $totalStudents = User::where('is_teacher', 0)->count();
+    $totalTeachers = User::where('is_teacher', 1)->count();
+    $totalCourses  = Course::count();
+
+    // Toplam saat (Lesson tablosunda duration varsa)
+    $hoursContent = \App\Models\Lesson::sum('duration');
+
+    return view('home.index', compact(
+        'featuredCourses',
+        'testimonials',
+        'recentPosts',
+        'totalStudents',
+        'totalTeachers',
+        'totalCourses',
+        'hoursContent'
+    ));
+}
+
 
     // Kurs listesi
     public function courses()

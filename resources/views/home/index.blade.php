@@ -88,41 +88,41 @@
  <div class="container">
     <div class="row">
        <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-         <div class="block-18 d-flex align-items-center">
-            <div class="icon"><span class="flaticon-online"></span></div>
-            <div class="text">
-             <strong class="number" data-number="400">0</strong>
-             <span>Online Courses</span>
-         </div>
-     </div>
- </div>
- <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-     <div class="block-18 d-flex align-items-center">
-        <div class="icon"><span class="flaticon-graduated"></span></div>
+    <div class="block-18 text-center">
         <div class="text">
-         <strong class="number" data-number="4500">0</strong>
-         <span>Students Enrolled</span>
-     </div>
- </div>
+            <strong class="number" data-number="{{ $totalCourses }}">{{ $totalCourses }}</strong>
+            <span>Online Courses</span>
+        </div>
+    </div>
 </div>
+
 <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
- <div class="block-18 d-flex align-items-center">
-    <div class="icon"><span class="flaticon-instructor"></span></div>
-    <div class="text">
-     <strong class="number" data-number="1200">0</strong>
-     <span>Experts Instructors</span>
- </div>
+    <div class="block-18 text-center">
+        <div class="text">
+            <strong class="number" data-number="{{ $totalStudents }}">{{ $totalStudents }}</strong>
+            <span>Students Enrolled</span>
+        </div>
+    </div>
 </div>
-</div>
+
 <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
- <div class="block-18 d-flex align-items-center">
-    <div class="icon"><span class="flaticon-tools"></span></div>
-    <div class="text">
-     <strong class="number" data-number="300">0</strong>
-     <span>Hours Content</span>
- </div>
+    <div class="block-18 text-center">
+        <div class="text">
+            <strong class="number" data-number="{{ $totalTeachers }}">{{ $totalTeachers }}</strong>
+            <span>Experts Instructors</span>
+        </div>
+    </div>
 </div>
+
+<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+    <div class="block-18 text-center">
+        <div class="text">
+            <strong class="number" data-number="{{ $hoursContent }}">{{ $hoursContent }}</strong>
+            <span>Hours Content</span>
+        </div>
+    </div>
 </div>
+
 </div>
 </div>
 </section>
