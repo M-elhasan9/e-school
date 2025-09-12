@@ -33,11 +33,12 @@ class UserController extends Controller
     $user->is_teacher = $request->is_teacher ?? 0;
     $user->password = bcrypt(Str::random(10));
 $image=$request->image;
-         if($image){
-            $imagename=time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('User',$imagename);
-            $user->image=$imagename;
-         }
+        if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $imagename = time() . '.' . $image->getClientOriginalExtension();
+    $image->move(public_path('User'), $imagename); // public/User/imagename
+    $user->image = $imagename;
+}
 $user->save();
 
     // Courses ekleme
@@ -74,11 +75,12 @@ public function update(Request $request, $id)
     $user->email = $request->email;
     $user->is_teacher = $request->is_teacher;
     $image=$request->image;
-         if($image){
-            $imagename=time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('User',$imagename);
-            $user->image=$imagename;
-         }
+         if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $imagename = time() . '.' . $image->getClientOriginalExtension();
+    $image->move(public_path('User'), $imagename);
+    $user->image = $imagename;
+}
 
     $user->save();
 

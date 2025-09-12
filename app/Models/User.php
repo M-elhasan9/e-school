@@ -54,6 +54,7 @@ public function teachingCourses()
                 ->withTimestamps()
                 ->withPivot('is_teacher')
                 ->wherePivot('is_teacher', true);
+                
 }
 
 public function learningCourses()

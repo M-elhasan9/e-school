@@ -14,8 +14,11 @@ class Lesson extends Model
         'content',
         'course_id',
         'order',
-        'video_url',    // eklendi
-        'attachment'    // eklendi
+        'video_url',   
+        'attachment' ,
+         'image',     
+         'duration',   
+         'status',  
     ];
 
     public function course()
