@@ -86,6 +86,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
+
+
 // Ekstra auth ve settings dosyaları
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

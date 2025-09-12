@@ -25,10 +25,15 @@
       @foreach ($teachers as $t)
         <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-4 ftco-animate">
           <div class="project-wrap border rounded overflow-hidden shadow-sm w-100">
-            <a href="{{ route('instructors.show', $t) }}"
-               class="d-block h-48"
-               style="background: center/cover no-repeat url('{{ $t->image ? asset('User/'.$t->image) : asset('images/default-teacher.jpg') }}');">
+            
+            {{-- Burada background yerine img etiketi kullanıyoruz --}}
+            <a href="{{ route('instructors.show', $t) }}" class="d-block">
+              <img src="{{ $t->image ? asset('User/'.$t->image) : asset('images/default-teacher.jpg') }}"
+                   alt="{{ $t->name }}"
+                   class="img-fluid w-100"
+                   style="height:250px; object-fit:cover;">
             </a>
+
             <div class="p-4 text-center">
               <h3 class="mb-1">
                 <a href="{{ route('instructors.show', $t) }}">{{ $t->name }}</a>
@@ -41,11 +46,9 @@
       @endforeach
     </div>
 
-  
-   <div class="mt-4 d-flex justify-content-center">
-    {{ $teachers->links('pagination::bootstrap-4') }}
-</div>
-
+    <div class="mt-4 d-flex justify-content-center">
+      {{ $teachers->links('pagination::bootstrap-4') }}
+    </div>
   </div>
 </section>
 @endsection

@@ -33,10 +33,11 @@ class Course extends Model
     }
 
     // Tekil öğretmen (teacher_id üzerinden)
-    public function teacher()
-    {
-        return $this->belongsTo(User::class, 'teacher_id');
-    }
+   public function teacher()
+{
+    return $this->belongsTo(\App\Models\User::class, 'teacher_id');
+}
+
 
     /*
      * === Öğrenci ve Öğretmen ilişkileri ===

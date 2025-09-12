@@ -24,9 +24,10 @@ class StudentController extends Controller
 
 public function viewLesson($id)
 {
-    $lesson = Lesson::with('course')->findOrFail($id);
+    $lesson = Lesson::with(['course', 'course.teacher'])->findOrFail($id);
     return view('student.lesson', compact('lesson'));
 }
+
 
 }
 

@@ -10,9 +10,14 @@
                 <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{{ route('home') }}#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="{{route('courses')}}" class="nav-link">Course</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Instructor</a></li>
+<li class="nav-item">
+  <a href="{{ route('instructors') }}" class="nav-link">Instructor</a>
+</li>
+
                 <li class="nav-item"><a href="{{ route('blog.index') }}" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+               <li class="nav-item">
+  <a href="{{ route('home') }}#contact" class="nav-link">Contact</a>
+</li>
 
                 {{-- Giriş yapmamış kullanıcılar için linkler --}}
                 @guest
