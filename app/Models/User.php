@@ -2,84 +2,75 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    'name',
+    'email',
+    'password',
+    'is_teacher',
+    'image', // ekledik
+];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_teacher' => 'boolean',
         ];
     }
 
+    // Bir öğrencinin tüm kayıtları (Enrollment)
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'user_id');
+    }
 
-public function enrollments()
-{
-    return $this->hasMany(Enrollment::class, 'user_id');
-}
-
-public function isAdmin()
-{
-    return $this->role === 'admin';
-}
-
-public function isStudent()
-{
-    return $this->role === 'student';
-}
+    // Kullanıcının dersleri (öğrenci veya öğretmen olabilir)
     public function courses()
     {
-        return $this->belongsToMany(Course::class)->withTimestamps();
-        // ->withPivot(['role', 'enrolled_at']); // if you added pivot fields
+        return $this->belongsToMany(Course::class, 'enrollments')
+                    ->withTimestamps();
+                    // ->withPivot(['enrolled_at']); // opsiyonel
     }
 
-    // Handy scopes if you want to separate teachers/students
-    public function teachingCourses()
+    // Öğretmen olarak verdiği dersler
+public function teachingCourses()
+{
+    return $this->belongsToMany(Course::class, 'enrollments')
+                ->withTimestamps()
+                ->withPivot('is_teacher')
+                ->wherePivot('is_teacher', true);
+                
+}
+
+public function learningCourses()
+{
+    return $this->belongsToMany(Course::class, 'enrollments')
+                ->withTimestamps()
+                ->wherePivot('is_teacher', false);
+}
+
+
+
+    // Kullanıcının dersleri (lesson_user pivot tablosu ile)
+    public function lessons()
     {
-        return $this->belongsToMany(Course::class)
-            ->withTimestamps()
-            ->where('is_teacher', true);
+        return $this->belongsToMany(Lesson::class, 'lesson_user')
+                    ->withTimestamps()
+                    ->withPivot(['status','completed_at']); // opsiyonel
     }
-
-    public function learningCourses()
-    {
-        return $this->belongsToMany(Course::class)
-            ->withTimestamps()
-            ->where('is_teacher', false);
-    }
-
 }

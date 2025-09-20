@@ -12,8 +12,8 @@
   </h3>
   <nav aria-label="breadcrumb">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item"><a href="#">Lessons</a></li>
+      <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="">Lessons</a></li>
       <li class="breadcrumb-item active" aria-current="page">Edit</li>
     </ul>
   </nav>
@@ -24,45 +24,81 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Lesson Details</h4>
-        <form enctype="multipart/form-data">
+
+        <form action="{{route('lessons.update',$lesson->id)}}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
           <div class="form-group">
-            <label for="lessonTitle">Lesson Title</label>
-            <input type="text" class="form-control" id="lessonTitle" value="Introduction to HTML">
+            <label>Course Name</label>
+            <input type="text" name="title" class="form-control"  placeholder="Enter course name" value="{{$lesson->title}}">
           </div>
+             <div class="form-group">
+            <label>Content</label>
+            <textarea name="content" class="form-control"  placeholder="Enter lesson content">{{$lesson->content}}</textarea>
+          </div>
+         <div class="form-group">
+    <label>Course</label>
+    <select name="course_id" class="form-control">
+        @foreach($courses as $course)
+            <option value="{{ $course->id }}">
+                {{ $course->title }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
           <div class="form-group">
-            <label for="course">Course</label>
-            <select class="form-control" id="course">
-              <option selected>Web Development</option>
-              <option>Mobile App Design</option>
-              <option>Machine Learning</option>
-            </select>
+            <label>Price</label>
+            <input type="number" name="price" class="form-control"  placeholder="Course price" value="{{$lesson->price}}">
           </div>
+         <div class="form-group">
+            <label>Duration</label>
+            <input type="text" name="duration" class="form-control"  placeholder="Course duration e.g. 12 weeks" value="{{$lesson->duration}}">
 
-          <div class="form-group">
-            <label for="duration">Duration</label>
-            <input type="text" class="form-control" id="duration" value="30 min">
           </div>
+           <div class="form-group">
+            <label>Enrolled Stusent</label>
+            <input type="text" name="enrolled_students" class="form-control"  placeholder="enrolled_student" value="{{$lesson->enrolled_students}}">
 
-          <div class="form-group">
-            <label for="lessonImage">Lesson Image</label>
-            <input type="file" class="form-control-file" id="lessonImage">
-            <small class="text-muted">Current image: <img src="{{ asset('assets/images/lessons/html.png') }}" alt="lesson" style="width:50px;"></small>
           </div>
-
           <div class="form-group">
             <label>Status</label>
-            <select class="form-control">
-              <option value="1" selected>Active</option>
-              <option value="0">Inactive</option>
+            <select name="status" class="form-control">
+            <option selected> {{$lesson->status}} </option>
+              <option >Active</option>
+              <option >Inactive</option>
             </select>
           </div>
+          <div class="form-group">
+    <label>Video URL</label>
+    <input type="text" name="video_url" class="form-control" value="{{ $lesson->video_url }}" placeholder="Enter video URL (YouTube or mp4)">
+</div>
 
+<div class="form-group">
+    <label>Attachment (PDF, DOCX, etc.)</label>
+    <input type="file" name="attachment" class="form-control">
+    @if($lesson->attachment)
+        <p class="mt-2">
+            <a href="{{ asset('storage/' . $lesson->attachment) }}" target="_blank" class="btn btn-sm btn-info">
+                <i class="mdi mdi-file"></i> View Current Attachment
+            </a>
+        </p>
+    @endif
+</div>
+
+           <div class="form-group">
+            <label>Lesson Image</label>
+            <input type="file" name="image" class="form-control">
+            @if($lesson->image)
+                  <img src="{{ asset('Lesson/' . $lesson->image) }}" alt="Lesson Image" width="50">
+            @endif
+            </div>
           <button type="submit" class="btn btn-gradient-primary mt-3">
-            <i class="mdi mdi-content-save"></i> Save Changes
+            <i class="mdi mdi-content-save"> Save Changes</i>
           </button>
-          <button type="reset" class="btn btn-light mt-3">Cancel</button>
+          <a href="{{route('lessons.index')}}" class="btn btn-light mt-3">Cancel</a>
         </form>
+
       </div>
     </div>
   </div>

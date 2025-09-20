@@ -1,254 +1,140 @@
 @extends('layouts.app')
-@section('content') 
-@section('title',' lesson ')  
-<body>
- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-   <div class="container">
-     <a class="navbar-brand" href="{{ asset('index.html') }}"><span>Study</span>Lab</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="oi oi-menu"></span> Menu
-     </button>
+@section('title', $lesson->title)
 
-     <div class="collapse navbar-collapse" id="ftco-nav">
-       <ul class="navbar-nav ml-auto">
-       <li class="nav-item"><a href="{{ asset('index.html') }}" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="{{ asset('about.html') }}" class="nav-link">About</a></li>
-					<li class="nav-item active"><a href="{{ asset('course.html') }}" class="nav-link">Course</a></li>
-					<li class="nav-item"><a href="{{ asset('instructor.html') }}" class="nav-link">Instructor</a></li>
-					<li class="nav-item"><a href="{{ asset('blog.html') }}" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="{{ asset('contact.html') }}" class="nav-link">Contact</a></li>
-				</ul>
-     </div>
-   </div>
- </nav>
- <!-- END nav -->
- 
- <section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_2.jpg') }}');">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-end justify-content-center">
-      <div class="col-md-9 ftco-animate pb-5 text-center">
-       <p class="breadcrumbs"><span class="mr-2"><a href="{{ asset('index.html') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="index.html">Instructor <i class="fa fa-chevron-right"></i></a></span> <span>Instructor Details <i class="fa fa-chevron-right"></i></span></p>
-       <h1 class="mb-0 bread">Instructor Details</h1>
-     </div>
-   </div>
- </div>
+@section('content')
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_1.jpg') }}');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{{ route('home') }}">Home <i class="fa fa-chevron-right"></i></a></span>
+                    <span><a href="{{ route('student.course', $lesson->course->id) }}">{{ $lesson->course->title ?? 'Course' }} <i class="fa fa-chevron-right"></i></a></span>
+                    <span>{{ $lesson->title }}</span>
+                </p>
+                <h1 class="mb-0 bread">{{ $lesson->title }}</h1>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="ftco-section bg-light">
- <div class="container">
-  <div class="row">
-   <div class="col-md-4 ftco-animate d-flex align-items-center align-items-stretch">
-    <div class="staff-2 w-100">
-     <div class="img-wrap d-flex align-items-stretch">
-      <div class="img align-self-stretch d-flex align-items-end" style="background-image: url('{{ asset('images/teacher-1.jpg');">
-       <div class="text mb-4 text-md-center">
-        <h3>Stephen Wilson</h3>
-        <span class="position mb-2">Business</span>
-        <div class="faded">
-         <!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-         <ul class="ftco-social">
-          <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-          <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-          <li class="ftco-animate"><a href="#"><span class="fa fa-google"></span></a></li>
-          <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-        </ul>
-      </div>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 ftco-animate">
 
-  </div>
-</div>
-</div>
-</div>
-<div class="col-md-8 d-flex align-items-center">
-  <div class="staff-detail w-100 pl-md-5">
-   <h3>About</h3>
-   <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-   <h3>Education</h3>
-   <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-   <h3>Experience</h3>
-   <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
- </div>
-</div>
-</div>
-</div>
+                {{-- Öğretmenin adı ve kurs --}}
+                <div class="mb-3">
+                    <small class="text-muted">
+                      Course:
+                      <a href="{{ route('student.course', $lesson->course->id ?? '#') }}">
+                        {{ $lesson->course->title ?? '—' }}
+                      </a>
+                      @if(isset($lesson->course->teacher))
+                        &nbsp; | &nbsp; Instructor:
+                        <a href="{{ route('instructors.show', $lesson->course->teacher->id) ?? '#' }}">
+                          {{ $lesson->course->teacher->name }}
+                        </a>
+                      @endif
+                    </small>
+                </div>
+
+                {{-- Resim --}}
+                @if(!empty($lesson->image) && file_exists(public_path('Lesson/'.$lesson->image)))
+                    <div class="mb-4">
+                        <img src="{{ asset('Lesson/'.$lesson->image) }}" alt="{{ $lesson->title }}" class="img-fluid rounded" style="max-height:400px; width:100%; object-fit:cover;">
+                    </div>
+                @endif
+
+                {{-- Meta: duration / status --}}
+                <div class="mb-3">
+                    @if(!empty($lesson->duration))
+                        <span class="badge badge-info mr-2">Duration: {{ $lesson->duration }}</span>
+                    @endif
+                    @if(!empty($lesson->status))
+                        <span class="badge badge-secondary">Status: {{ ucfirst($lesson->status) }}</span>
+                    @endif
+                </div>
+
+                {{-- Video (basit YouTube embed desteği) --}}
+                @if(!empty($lesson->video_url))
+                    <div class="mb-4">
+                        @php
+                            $video = $lesson->video_url;
+                        @endphp
+
+                        @if(\Illuminate\Support\Str::contains($video, 'youtube.com') || \Illuminate\Support\Str::contains($video, 'youtu.be'))
+                            @php
+                              // basit YouTube embed dönüştürme
+                              if(Str::contains($video, 'watch?v=')) {
+                                  $videoId = Str::after($video, 'watch?v=');
+                                  // temizle parametreleri
+                                  $videoId = explode('&', $videoId)[0];
+                              } elseif(Str::contains($video, 'youtu.be/')) {
+                                  $videoId = Str::after($video, 'youtu.be/');
+                                  $videoId = explode('?',$videoId)[0];
+                              } else {
+                                  $videoId = null;
+                              }
+                            @endphp
+
+                            @if(!empty($videoId))
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ $videoId }}" allowfullscreen></iframe>
+                                </div>
+                            @else
+                                <p><a href="{{ $video }}" target="_blank">Watch video</a></p>
+                            @endif
+                        @else
+                            <p><a href="{{ $video }}" target="_blank">Watch video</a></p>
+                        @endif
+                    </div>
+                @endif
+
+                {{-- Attachment (download) --}}
+                @if(!empty($lesson->attachment))
+                    <div class="mb-4">
+                        @php
+                            // Eğer attachment public disk'e kaydedildiyse storage link üzerinden eriş
+                            $attachUrl = Str::startsWith($lesson->attachment, 'attachments/')
+                                ? asset('storage/'.$lesson->attachment)
+                                : asset($lesson->attachment);
+                        @endphp
+
+                        <a href="{{ $attachUrl }}" class="btn btn-outline-primary" target="_blank" download>
+                            <i class="fa fa-download"></i> Download Attachment
+                        </a>
+                    </div>
+                @endif
+
+                {{-- İçerik --}}
+                <div class="content">
+                    {!! $lesson->content ?? '<p>No content available.</p>' !!}
+                </div>
+
+                <a href="{{ route('student.course', $lesson->course->id) }}" class="btn btn-primary mt-3">
+                    <i class="fa fa-arrow-left"></i> Back to Course
+                </a>
+
+            </div> {{-- col-lg-9 --}}
+
+            {{-- Sağ sütun: ders listesi (isteğe bağlı) --}}
+            <div class="col-lg-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h6>Lessons in this course</h6>
+                        <ul class="list-unstyled">
+                            @foreach($lesson->course->lessons()->orderBy('order')->get() as $l)
+                                <li class="{{ $l->id == $lesson->id ? 'font-weight-bold' : '' }}">
+                                    <a href="{{ route('student.lesson', $l->id) }}">{{ $l->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div> {{-- row --}}
+    </div> {{-- container --}}
 </section>
-
-<section class="ftco-section bg-light ftco-no-pt">
- <div class="container">
-  <div class="row pb-4">
-    <div class="col-md-12 heading-section ftco-animate">
-      <h2 class="mb-4">Course By Stephen Wilson</h2>
-    </div>
-  </div>
-  <div class="row">
-   <div class="col-md-4 ftco-animate">
-    <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{ asset('images/work-1.jpg');">
-      <span class="price">Software</span>
-    </a>
-    <div class="text p-4">
-      <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-      <p class="advisor">Advisor <span>Tony Garret</span></p>
-      <ul class="d-flex justify-content-between">
-       <li><span class="flaticon-shower"></span>2300</li>
-       <li class="price">$199</li>
-     </ul>
-   </div>
- </div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-2.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-3.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-4.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-5.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-6.jpg');">
-    <span class="price">Software</span>
-  </a>
-  <div class="text p-4">
-    <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-    <p class="advisor">Advisor <span>Tony Garret</span></p>
-    <ul class="d-flex justify-content-between">
-     <li><span class="flaticon-shower"></span>2300</li>
-     <li class="price">$199</li>
-   </ul>
- </div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<footer class="ftco-footer ftco-no-pt">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-md pt-5">
-        <div class="ftco-footer-widget pt-md-5 mb-4">
-          <h2 class="ftco-heading-2">About</h2>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md pt-5">
-        <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-          <h2 class="ftco-heading-2">Help Desk</h2>
-          <ul class="list-unstyled">
-            <li><a href="#" class="py-2 d-block">Customer Care</a></li>
-            <li><a href="#" class="py-2 d-block">Legal Help</a></li>
-            <li><a href="#" class="py-2 d-block">Services</a></li>
-            <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-            <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
-            <li><a href="#" class="py-2 d-block">Call Us</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md pt-5">
-       <div class="ftco-footer-widget pt-md-5 mb-4">
-        <h2 class="ftco-heading-2">Recent Courses</h2>
-        <ul class="list-unstyled">
-          <li><a href="#" class="py-2 d-block">Computer Engineering</a></li>
-          <li><a href="#" class="py-2 d-block">Web Design</a></li>
-          <li><a href="#" class="py-2 d-block">Business Studies</a></li>
-          <li><a href="#" class="py-2 d-block">Civil Engineering</a></li>
-          <li><a href="#" class="py-2 d-block">Computer Technician</a></li>
-          <li><a href="#" class="py-2 d-block">Web Developer</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md pt-5">
-      <div class="ftco-footer-widget pt-md-5 mb-4">
-       <h2 class="ftco-heading-2">Have a Questions?</h2>
-       <div class="block-23 mb-3">
-         <ul>
-           <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-           <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-           <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-         </ul>
-       </div>
-     </div>
-   </div>
- </div>
- <div class="row">
-  <div class="col-md-12 text-center">
-
-    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-    </div>
-  </div>
-</div>
-</footer>
-
-
-
-<!-- loader -->
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-
-
-</body>
-
 @endsection

@@ -17,9 +17,9 @@
             </a>
             <div class="collapse show" id="courses-menu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="{{route('courses')}}">View Courses</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('create_courses')}}">Create Course</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('edit_courses')}}">Edit Course</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('courses.index')}}">View Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('courses.create')}}">Create Course</a></li>
+
                 </ul>
             </div>
         </li>
@@ -33,9 +33,9 @@
             </a>
             <div class="collapse show" id="lessons-menu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="{{route('lessons')}}">View Lessons</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('create_lessons')}}">Create Lesson</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('edit_lessons')}}">Edit Lesson</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('lessons.index')}}">View Lessons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('lessons.create')}}">Create Lesson</a></li>
+
                 </ul>
             </div>
         </li>
@@ -49,9 +49,9 @@
             </a>
             <div class="collapse show" id="users-menu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="{{route('users')}}">View Users</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('create_users')}}">Create User</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('edit_users')}}">Edit User</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('admin.users.index')}}">View Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('admin.users.create')}}">Create User</a></li>
+                
                 </ul>
             </div>
         </li>

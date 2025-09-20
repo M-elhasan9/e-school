@@ -1,37 +1,17 @@
 @extends('layouts.app')
-@section('content') 
-@section('title',' details ')  
-<!DOCTYPE html>
-<html lang="en">
+@section('title',' details ')
+@section('content')
 
-<body>
- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-   <div class="container">
-     <a class="navbar-brand" href="{{ asset('index.html') }}"><span>Study</span>Lab</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="oi oi-menu"></span> Menu
-     </button>
 
-     <div class="collapse navbar-collapse" id="ftco-nav">
-       <ul class="navbar-nav ml-auto">
-       <li class="nav-item"><a href="{{ asset('index.html') }}" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="{{ asset('about.html') }}" class="nav-link">About</a></li>
-					<li class="nav-item active"><a href="{{ asset('course.html') }}" class="nav-link">Course</a></li>
-					<li class="nav-item"><a href="{{ asset('instructor.html') }}" class="nav-link">Instructor</a></li>
-					<li class="nav-item"><a href="{{ asset('blog.html') }}" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="{{ asset('contact.html') }}" class="nav-link">Contact</a></li>
-				</ul>
-     </div>
-   </div>
- </nav>
+
  <!-- END nav -->
- 
+
  <section class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('images/bg_2.jpg') }}');">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
-       <p class="breadcrumbs"><span class="mr-2"><a href="{{ asset('index.html') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="index.html">Instructor <i class="fa fa-chevron-right"></i></a></span> <span>Instructor Details <i class="fa fa-chevron-right"></i></span></p>
+       <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home')}}">Home <i class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="index.html">Instructor <i class="fa fa-chevron-right"></i></a></span> <span>Instructor Details <i class="fa fa-chevron-right"></i></span></p>
        <h1 class="mb-0 bread">Instructor Details</h1>
      </div>
    </div>
@@ -44,7 +24,7 @@
    <div class="col-md-4 ftco-animate d-flex align-items-center align-items-stretch">
     <div class="staff-2 w-100">
      <div class="img-wrap d-flex align-items-stretch">
-      <div class="img align-self-stretch d-flex align-items-end" style="background-image: url('{{ asset('images/teacher-1.jpg');">
+      <div class="img align-self-stretch d-flex align-items-end" style="background-image: url('{{ asset('images/teacher-1.jpg')}}');">
        <div class="text mb-4 text-md-center">
         <h3>Stephen Wilson</h3>
         <span class="position mb-2">Business</span>
@@ -87,7 +67,7 @@
   <div class="row">
    <div class="col-md-4 ftco-animate">
     <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{ asset('images/work-1.jpg');">
+     <a href="#" class="img" style="background-image: url('{{ asset('images/work-1.jpg')}}');">
       <span class="price">Software</span>
     </a>
     <div class="text p-4">
@@ -102,7 +82,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-2.jpg');">
+   <a href="#" class="img" style="background-image: url('{{ asset('images/work-2.jpg')}}');">
     <span class="price">Software</span>
   </a>
   <div class="text p-4">
@@ -117,7 +97,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-3.jpg');">
+   <a href="#" class="img" style="background-image: url('{{ asset('images/work-3.jpg')}}');">
     <span class="price">Software</span>
   </a>
   <div class="text p-4">
@@ -133,7 +113,7 @@
 
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-4.jpg');">
+   <a href="#" class="img" style="background-image: url('{{ asset('images/work-4.jpg')}}');">
     <span class="price">Software</span>
   </a>
   <div class="text p-4">
@@ -148,7 +128,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-5.jpg');">
+   <a href="#" class="img" style="background-image: url('{{ asset('images/work-5.jpg')}}');">
     <span class="price">Software</span>
   </a>
   <div class="text p-4">
@@ -163,7 +143,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-   <a href="#" class="img" style="background-image: url('{{ asset('images/work-6.jpg');">
+   <a href="#" class="img" style="background-image: url('{{ asset('images/work-6.jpg')}}');">
     <span class="price">Software</span>
   </a>
   <div class="text p-4">

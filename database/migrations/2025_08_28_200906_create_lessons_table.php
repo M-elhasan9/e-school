@@ -13,6 +13,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('content')->nullable();
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->integer('order')->default(1);
+            $table->string('video_url')->nullable();      // YouTube veya mp4 linki
+            $table->string('attachment')->nullable();     // ek dosya
+            $table->string('image')->nullable();
+            $table->integer('duration')->nullable();
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

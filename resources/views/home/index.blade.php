@@ -1,50 +1,34 @@
 @extends('layouts.app')
+<style>
+.testimonial-form input,
+.testimonial-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
 
+.testimonial-form button {
+  background: #6c63ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+.user-img {
+    width: 60px;           /* resim genişliği */
+    height: 60px;          /* resim yüksekliği */
+    border-radius: 50%;    /* dairesel yapar */
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;        /* küçükleşmesini engeller */
+}
+
+
+</style>
 @section('title', 'Home Page')
 @section('content')
-<body>
- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-   <div class="container">
-     <a class="navbar-brand" href="{{ asset('index.html') }}"><span>Study</span>Lab</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="oi oi-menu"></span> Menu
-   </button>
-
-  <div class="collapse navbar-collapse" id="ftco-nav">
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Course</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Instructor</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-
-        {{-- Yeni eklenen linkler --}}
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log out!</a>
-                @else
-                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
-
-                    @if (Route::has('register'))
-                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
-                    @endif
-                @endauth
-            </div>
-        @endif
-
-
-    </ul>
-</div>
-
-
-
-
-
-</div>
-</nav>
-<!-- END nav -->
 
 <div class="hero-wrap js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg')}}');">
   <div class="overlay"></div>
@@ -54,7 +38,7 @@
         <span class="subheading">Welcome to StudyLab</span>
         <h1 class="mb-4">We Are Online Platform For Make Learn</h1>
         <p class="caps">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-        <p class="mb-0"><a href="#" class="btn btn-primary">Our Course</a> <a href="#" class="btn btn-white">Learn More</a></p>
+        <p class="mb-0"><a href="{{route('courses')}}" class="btn btn-primary">Our Course</a> </p>
     </div>
 </div>
 </div>
@@ -62,173 +46,42 @@
 
 
 
-<section class="ftco-section">
-   <div class="container">
-      <div class="row justify-content-center pb-4">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">Start Learning Today</span>
-            <h2 class="mb-4">Browse Online Course Category</h2>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-     <div class="col-md-3 col-lg-2">
-        <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-1.jpg')}}');">
-           <div class="text w-100 text-center">
-              <h3>IT &amp; Software</h3>
-              <span>100 course</span>
-          </div>
-      </a>
-  </div>
-  <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-9.jpg')}}');">
-       <div class="text w-100 text-center">
-          <h3>Music</h3>
-          <span>100 course</span>
-      </div>
-  </a>
-</div>
-<div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-3.jpg')}}');">
-       <div class="text w-100 text-center">
-          <h3>Photography</h3>
-          <span>100 course</span>
-      </div>
-  </a>
-</div>
-<div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-5.jpg')}}');">
-       <div class="text w-100 text-center">
-          <h3>Marketing</h3>
-          <span>100 course</span>
-      </div>
-  </a>
-</div>
-<div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-8.jpg')}}');">
-       <div class="text w-100 text-center">
-          <h3>Health</h3>
-          <span>100 course</span>
-      </div>
-  </a>
-</div>
-<div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/work-6.jpg')}}');">
-       <span class="text w-100 text-center">
-          <h3>Audio Video</h3>
-          <span>100 course</span>
-      </span>
-  </a>
-</div>
-<div class="col-md-12 text-center mt-5">
-    <a href="#" class="btn btn-secondary">See All Courses</a>
-</div>
-</div>
-</div>
-</section>
+
 
 <section class="ftco-section bg-light">
-   <div class="container">
-      <div class="row justify-content-center pb-4">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">Start Learning Today</span>
-            <h2 class="mb-4">Pick Your Course</h2>
-        </div>
+  <div class="container">
+    <div class="row justify-content-center pb-4">
+      <div class="col-md-12 heading-section text-center ftco-animate">
+        <span class="subheading">Start Learning Today</span>
+        <h2 class="mb-4">Pick Your Course</h2>
+      </div>
     </div>
-    <div class="row">
-       <div class="col-md-4 ftco-animate">
-          <div class="project-wrap">
-             <a href="#" class="img" style="background-image: url('{{ asset('images/bg_1.jpg')}}');">
-                <span class="price">Software</span>
-            </a>
-            <div class="text p-4">
-                <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-                <p class="advisor">Advisor <span>Tony Garret</span></p>
-                <ul class="d-flex justify-content-between">
-                   <li><span class="flaticon-shower"></span>2300</li>
-                   <li class="price">$199</li>
-               </ul>
-           </div>
-       </div>
-   </div>
-   <div class="col-md-4 ftco-animate">
-      <div class="project-wrap">
-         <a href="#" class="img" style="background-image: url('{{ asset('images/work-2.jpg')}}');">
-            <span class="price">Software</span>
-        </a>
-        <div class="text p-4">
-            <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-            <p class="advisor">Advisor <span>Tony Garret</span></p>
-            <ul class="d-flex justify-content-between">
-               <li><span class="flaticon-shower"></span>2300</li>
-               <li class="price">$199</li>
-           </ul>
-       </div>
-   </div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{ asset('images/work-3.jpg')}}');">
-        <span class="price">Software</span>
-    </a>
-    <div class="text p-4">
-        <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
-        <ul class="d-flex justify-content-between">
-           <li><span class="flaticon-shower"></span>2300</li>
-           <li class="price">$199</li>
-       </ul>
-   </div>
-</div>
-</div>
 
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{ asset('images/work-4.jpg')}}');">
-        <span class="price">Software</span>
-    </a>
-    <div class="text p-4">
-        <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
-        <ul class="d-flex justify-content-between">
-           <li><span class="flaticon-shower"></span>2300</li>
-           <li class="price">$199</li>
-       </ul>
-   </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{ asset('images/work-5.jpg')}}');">
-        <span class="price">Software</span>
-    </a>
-    <div class="text p-4">
-        <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
-        <ul class="d-flex justify-content-between">
-           <li><span class="flaticon-shower"></span>2300</li>
-           <li class="price">$199</li>
-       </ul>
-   </div>
-</div>
-</div>
-<div class="col-md-4 ftco-animate">
-  <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{ asset('images/work-6.jpg')}}');">
-        <span class="price">Software</span>
-    </a>
-    <div class="text p-4">
-        <h3><a href="#">Design for the web with adobe photoshop</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
-        <ul class="d-flex justify-content-between">
-           <li><span class="flaticon-shower"></span>2300</li>
-           <li class="price">$199</li>
-       </ul>
-   </div>
-</div>
-</div>
-</div>
-</div>
+    <div class="row">
+      @forelse($featuredCourses as $course)
+        <div class="col-md-3 col-lg-2">
+          <a href="{{ route('courses.show', $course->id) }}"
+             class="course-category img d-flex align-items-center justify-content-center"
+             style="background-image: url('{{ $course->image ? asset('Course/'.$course->image) : asset('images/default-course.jpg') }}'); height:150px; background-size:cover;">
+            <div class="text w-100 text-center">
+              <h3 style="font-size:16px; line-height:1.1;">{{ \Illuminate\Support\Str::limit($course->title, 30) }}</h3>
+              <span>{{ $course->enrolled_students ?? 0 }} course</span>
+            </div>
+          </a>
+        </div>
+      @empty
+        <div class="col-12 text-center text-muted">
+          No featured courses yet.
+        </div>
+      @endforelse
+    </div>
+
+    <div class="col-md-12 text-center mt-5">
+      <a href="{{ route('courses') }}" class="btn btn-secondary">See All Courses</a>
+    </div>
+  </div>
 </section>
+
 
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url('{{ asset('images/bg_4.jpg')}}');">
  <div class="overlay"></div>
@@ -274,7 +127,7 @@
 </div>
 </section>
 
-<section class="ftco-section ftco-about img">
+<section id="about" class="ftco-section ftco-about img">
    <div class="container">
       <div class="row d-flex">
          <div class="col-md-12 about-intro">
@@ -293,7 +146,32 @@
                      <span class="subheading">Enhanced Your Skills</span>
                      <h2 class="mb-4">Learn Anything You Want Today</h2>
                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                     <p><a href="#" class="btn btn-primary">Get in touch with us</a></p>
+                    <!-- Buton -->
+<p>
+  <button id="contact-btn" class="btn btn-primary">Get in Touch</button>
+</p>
+
+<!-- Gizli form -->
+<div id="contact-form-container" style="display:none; margin-top:20px;">
+  @if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+  @endif
+
+  <form action="{{ route('contact.store') }}" method="POST">
+    @csrf
+    <div class="form-group">
+      <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+    </div>
+    <div class="form-group">
+      <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+    </div>
+    <div class="form-group">
+      <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </form>
+</div>
+
                  </div>
              </div>
          </div>
@@ -307,127 +185,57 @@
 <section class="ftco-section testimony-section bg-light">
    <div class="overlay" style="background-image: url('{{ asset('images/bg_2.jpg')}}');"></div>
    <div class="container">
-    <div class="row pb-4">
-      <div class="col-md-7 heading-section ftco-animate">
-         <span class="subheading">Testimonial</span>
-         <h2 class="mb-4">What Are Students Says</h2>
-     </div>
- </div>
-</div>
-<div class="container container-2">
-    <div class="row ftco-animate">
-      <div class="col-md-12">
-        <div class="carousel-testimony owl-carousel">
-          <div class="item">
-            <div class="testimony-wrap py-4">
-              <div class="text">
-                 <p class="star">
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </p>
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                <div class="d-flex align-items-center">
-                   <div class="user-img" style="background-image: url('{{ asset('images/person_1.jpg')}}')"></div>
-                   <div class="pl-3">
-                      <p class="name">Roger Scott</p>
-                      <span class="position">Marketing Manager</span>
-                  </div>
-              </div>
-          </div>
+      <div class="row pb-4">
+         <div class="col-md-7 heading-section ftco-animate">
+            <span class="subheading">Testimonial</span>
+            <h2 class="mb-4">What Students Say</h2>
+         </div>
       </div>
-  </div>
-  <div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_2.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
+   </div>
+
+   <div class="container container-2">
+      <div class="row ftco-animate">
+         <div class="col-md-12">
+            @if($testimonials->count() > 2)
+                <div class="carousel-testimony owl-carousel">
+                    @foreach($testimonials as $testimonial)
+                        <div class="item">
+                            @include('home.partials.testimonial-card', ['testimonial' => $testimonial])
+
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="row">
+                    @foreach($testimonials as $testimonial)
+                        <div class="col-md-4">
+                            @include('home.partials.testimonial-card', ['testimonial' => $testimonial])
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+         </div>
       </div>
-  </div>
-</div>
-</div>
-<div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_3.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
-      </div>
-  </div>
-</div>
-</div>
-<div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_1.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
-      </div>
-  </div>
-</div>
-</div>
-<div class="item">
-    <div class="testimony-wrap py-4">
-      <div class="text">
-         <p class="star">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-        <div class="d-flex align-items-center">
-           <div class="user-img" style="background-image: url('{{ asset('images/person_2.jpg')}}')"></div>
-           <div class="pl-3">
-              <p class="name">Roger Scott</p>
-              <span class="position">Marketing Manager</span>
-          </div>
-      </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+   </div>
+
+   {{-- Optional: Add the form for new testimonial --}}
+   <div class="testimonial-form mt-5" style="margin:10px;">
+      <h3>Leave a Testimonial</h3>
+      <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
+         @csrf
+         <input type="text" name="student_name" placeholder="Your Name" required>
+         <input type="text" name="position" placeholder="Position / Department">
+         <textarea name="comment" placeholder="Your Comment" required></textarea>
+         <input type="number" name="stars" min="1" max="5" value="5">
+         <input type="file" name="image">
+         <button type="submit">Submit</button>
+      </form>
+   </div>
 </section>
+
+
+
+
 
 <section class="ftco-intro ftco-section ftco-no-pb">
  <div class="container">
@@ -437,7 +245,20 @@
              <div class="overlay"></div>
              <h2>We Are StudyLab An Online Learning Center</h2>
              <p>We can manage your dream building A small river named Duden flows by their place</p>
-             <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Enroll Now</a></p>
+            <p class="mb-0">
+    @guest
+        <a href="{{ route('login') }}" class="btn btn-primary px-4 py-3">
+            Enroll Now
+        </a>
+    @endguest
+
+    @auth
+        <a href="{{ route('courses') }}" class="btn btn-primary px-4 py-3">
+            Go to Course
+        </a>
+    @endauth
+</p>
+
          </div>
      </div>
  </div>
@@ -454,7 +275,7 @@
             <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
             <div class="d-flex video-image align-items-center mt-md-4">
-              <a href="#" class="video img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/about.jpg') }}');">
+              <a href="https://www.youtube.com/watch?v=sqe1_w7Galc" target="_blank" class="video img d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/about.jpg') }}');">
                  <span class="fa fa-play-circle"></span>
              </a>
              <h4 class="ml-4">Learn anything from StudyLab, Watch video</h4>
@@ -509,73 +330,43 @@
 <section class="ftco-section bg-light">
   <div class="container">
      <div class="row justify-content-center pb-4">
-      <div class="col-md-12 heading-section text-center ftco-animate">
-         <span class="subheading">Our Blog</span>
-         <h2 class="mb-4">Recent Post</h2>
+        <div class="col-md-12 heading-section text-center ftco-animate">
+           <span class="subheading">Our Blog</span>
+           <h2 class="mb-4">Recent Posts</h2>
+        </div>
      </div>
- </div>
- <div class="row d-flex">
-  <div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_1.jpg') }}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
-     </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
+     <div class="row d-flex">
+        @foreach($recentPosts as $post)
+          <div class="col-lg-4 ftco-animate">
+            <div class="blog-entry">
+              @if($post->image)
+    <a href="#" class="block-20" style="background-image: url('{{ asset($post->image) }}');"></a>
+@endif
+              <div class="text d-block">
+                 <div class="meta">
+                    <p>
+                       <a href="#"><span class="fa fa-calendar mr-2"></span>{{ $post->published_at ? $post->published_at->format('M d, Y') : '' }}</a>
+                       <a href="#"><span class="fa fa-user mr-2"></span>{{ $post->author }}</a>
+                    </p>
+                 </div>
+                 <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
+                 <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
 
-<div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_2.jpg') }}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
+              </div>
+            </div>
+          </div>
+        @endforeach
      </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
-<div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href={{ asset('blog-single.html') }} class="block-20" style="background-image: url('{{ asset('images/image_3.jpg') }}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
+     <div class="row mt-4">
+        <div class="col text-center">
+            <a href="{{ route('blog.index') }}" class="btn btn-primary">See All Blog Posts</a>
+        </div>
      </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href={{ asset('blog.html') }} class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
-</div>
-</div>
+  </div>
 </section>
 
 
-<footer class="ftco-footer ftco-no-pt">
+<footer id="contact" class="ftco-footer ftco-no-pt">
   <div class="container">
     <div class="row mb-5">
       <div class="col-md pt-5">
@@ -583,58 +374,42 @@
           <h2 class="ftco-heading-2">About</h2>
           <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
           <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+           <li class="ftco-animate">
+  <a href="https://twitter.com/StudyLab" target="_blank">
+    <span class="fa fa-twitter"></span>
+  </a>
+</li>
+<li class="ftco-animate">
+  <a href="https://facebook.com/StudyLab" target="_blank">
+    <span class="fa fa-facebook"></span>
+  </a>
+</li>
+<li class="ftco-animate">
+  <a href="https://instagram.com/StudyLab" target="_blank">
+    <span class="fa fa-instagram"></span>
+  </a>
+</li>
+
         </ul>
     </div>
 </div>
+
+
 <div class="col-md pt-5">
     <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-      <h2 class="ftco-heading-2">Help Desk</h2>
-      <ul class="list-unstyled">
-        <li><a href="#" class="py-2 d-block">Customer Care</a></li>
-        <li><a href="#" class="py-2 d-block">Legal Help</a></li>
-        <li><a href="#" class="py-2 d-block">Services</a></li>
-        <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-        <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
-        <li><a href="#" class="py-2 d-block">Call Us</a></li>
-    </ul>
-</div>
-</div>
-<div class="col-md pt-5">
-   <div class="ftco-footer-widget pt-md-5 mb-4">
-      <h2 class="ftco-heading-2">Recent Courses</h2>
-      <ul class="list-unstyled">
-        <li><a href="#" class="py-2 d-block">Computer Engineering</a></li>
-        <li><a href="#" class="py-2 d-block">Web Design</a></li>
-        <li><a href="#" class="py-2 d-block">Business Studies</a></li>
-        <li><a href="#" class="py-2 d-block">Civil Engineering</a></li>
-        <li><a href="#" class="py-2 d-block">Computer Technician</a></li>
-        <li><a href="#" class="py-2 d-block">Web Developer</a></li>
-    </ul>
-</div>
-</div>
-<div class="col-md pt-5">
-    <div class="ftco-footer-widget pt-md-5 mb-4">
        <h2 class="ftco-heading-2">Have a Questions?</h2>
        <div class="block-23 mb-3">
          <ul>
-           <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-           <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-           <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
+           <li><span class="icon fa fa-map-marker"></span><span class="text">Gaziantep, Türkiye</span></li>
+           <li><a href="tel:+905551112233"><span class="icon fa fa-phone"></span><span class="text">+90 555 111 22 33</span></a></li>
+           <li><a href="mailto:info@studylab.com"><span class="icon fa fa-paper-plane"></span><span class="text">info@studylab.com</span></a></li>
        </ul>
    </div>
 </div>
 </div>
 </div>
 <div class="row">
-  <div class="col-md-12 text-center">
 
-    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-  </div>
 </div>
 </div>
 </footer>
@@ -644,8 +419,17 @@
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+<script>
+document.getElementById('contact-btn').addEventListener('click', function() {
+    var form = document.getElementById('contact-form-container');
+    if(form.style.display === "none"){
+        form.style.display = "block";
+        form.scrollIntoView({behavior: "smooth"});
+    } else {
+        form.style.display = "none";
+    }
+});
+</script>
 
 
-</body>
-</html>
 @endsection
