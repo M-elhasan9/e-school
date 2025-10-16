@@ -8598,7 +8598,7 @@ h1, h2, h3, h4, h5,
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../images/bg_11.jpg'); /* inline style kaldır */
+  background-image: url('../images/bg_1.jpg'); /* inline style kaldır */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
